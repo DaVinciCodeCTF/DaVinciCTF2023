@@ -10,10 +10,10 @@ NOTE : from now on, and for lisibility purposes, 'ASCII piano keyboard' will be 
 
 Throughout these stages, the player will encounter 4 chord types, which are :
 
-* major
-* minor
-* aug
-* dim
+- major
+- minor
+- aug
+- dim
 
 These chord types only represent the distance between the first note of the chord and the rest of the chords.
 
@@ -27,18 +27,17 @@ After the first note of a major chord, you have 4 semitons before the 2nd note, 
 
 After the first note of a minor chord, you have 3 semitons before the 2nd note, and 4 semitons before the third.
 
-### Major chords
+### Aug chords
 
-After the first note of a major chord, you have 4 semitons before the 2nd note, and 4 semitons before the third.
+After the first note of an aug chord, you have 4 semitons before the 2nd note, and 4 semitons before the third.
 
-### Major chords
+### Dim chords
 
-After the first note of a major chord, you have 3 semitons before the 2nd note, and 3 semitons before the third.
-
+After the first note of a dim chord, you have 3 semitons before the 2nd note, and 3 semitons before the third.
 
 ## About Apks
 
-For comprehension, an single ASCII piano keyboard will be refered as an Apk unit. 
+For comprehension, a single ASCII piano keyboard will be refered as an Apk unit.
 
 ```
 _____________________________
@@ -62,7 +61,7 @@ Input :
 
 ```
 Give me the 4th G# plz
-``` 
+```
 
 Solution :
 
@@ -76,7 +75,7 @@ ________________________________________________________________________________
 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
 |___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|
 
-``` 
+```
 
 ## About second stage (piano2)
 
@@ -87,18 +86,18 @@ Possible chords are all chords from major and minor scales containing 3 notes.
 
 ### Answer format
 
-As this stage only contains major and minor scales, aswer format are pretty straightforward.
+As this stage only contains major and minor scales, answer formats are pretty straightforward.
 
 #### Answer format examples
 
-for major chords : `G` 50 times in a row. The maximum time limit per Apk is 1 second.
+for major chords : `G`
 for minor chords : `Gm`
 for sharp major chords : `G#`
 for sharp minor chords : `G#m`
 
 ### Example
 
-Input : 
+Input :
 
 ```
 _________________________________________________________
@@ -151,9 +150,9 @@ ________________________________________________________________________________
 |___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|
 
 Chord ?
-``` 
+```
 
-Solution : 
+Solution :
 
 ```
 C#m
