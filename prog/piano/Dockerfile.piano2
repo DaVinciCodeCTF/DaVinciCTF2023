@@ -1,0 +1,8 @@
+FROM alpine
+
+RUN apk update && apk add s6-networking python3 
+RUN adduser piano2 -D
+
+EXPOSE 7851
+USER piano2
+CMD s6-tcpserver 0.0.0.0 7851 python3 piano2.py
