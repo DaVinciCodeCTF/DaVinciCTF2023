@@ -5,16 +5,16 @@ services:
     dockerfile: Dockerfile.piano1
     restart: true
     ports:
-      - "4856:4856"
+      - "7751:7751"
   piano2:
     build: ./
     dockerfile: Dockerfile.piano2
     restart: true
     ports:
-      - "7851:7851"
+      - "7752:7752"
   piano3:
     build: ./
     dockerfile: Dockerfile.piano3
     restart: true
     ports:
-      - "3214:3214"
+      - "7753:7753"
