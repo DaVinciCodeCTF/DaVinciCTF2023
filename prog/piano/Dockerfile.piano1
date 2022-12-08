@@ -3,6 +3,6 @@ FROM alpine
 RUN apk update && apk add s6-networking python3 
 RUN adduser piano1 -D
 
-EXPOSE 4856
+EXPOSE 7751
 USER piano1
-CMD s6-tcpserver 0.0.0.0 4856 python3 piano1.py
+CMD s6-tcpserver 0.0.0.0 7751 python3 piano1.py
