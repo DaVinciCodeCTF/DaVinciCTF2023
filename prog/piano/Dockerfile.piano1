@@ -2,8 +2,6 @@ FROM alpine
 
 RUN apk update && apk add s6-networking python3 
 RUN adduser piano1 -D
-COPY ./app/ /app/
-WORKDIR /app/
 
 EXPOSE 4856
 USER piano1
