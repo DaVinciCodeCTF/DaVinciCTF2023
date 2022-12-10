@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All uploaded files</title>
+</head>
+<body>
+    <h1>You can check the files uploaded here</h1>
+
+    <ul>
+	{% for file in tree %}
+        <li>{{ file|safe }}</li>
+	{% endfor %}
+	{% if sizeTree == 0 %}
+	<p>No files uploaded</p>
+	{% endif %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,3 @@
+NoIdea Chall
+
+You have found the website of one of the DVCTF organisers. I wonder what you could do with his admin cookie...

