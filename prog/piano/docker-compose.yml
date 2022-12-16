@@ -1,20 +1,23 @@
-version: '3.9'
+version: "3"
 services:
   piano1:
-    build: ./
-    dockerfile: Dockerfile.piano1
-    restart: true
+    build:
+      context: .
+      dockerfile: Dockerfile.piano1
+    restart: always
     ports:
       - "7751:7751"
   piano2:
-    build: ./
-    dockerfile: Dockerfile.piano2
-    restart: true
+    build:
+      context: .
+      dockerfile: Dockerfile.piano2
+    restart: always
     ports:
       - "7752:7752"
   piano3:
-    build: ./
-    dockerfile: Dockerfile.piano3
-    restart: true
+    build:
+      context: .
+      dockerfile: Dockerfile.piano3
+    restart: always
     ports:
       - "7753:7753"
