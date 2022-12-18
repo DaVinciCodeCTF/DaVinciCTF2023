@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker kill firstchallweb
-docker rm firstchallweb
+docker kill noidea
+docker rm noidea
 
-docker kill firstchallbot
-docker rm firstchallbot
+docker kill noidea_bot
+docker rm noidea_bot
