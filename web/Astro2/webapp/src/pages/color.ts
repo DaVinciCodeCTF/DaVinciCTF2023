@@ -14,7 +14,7 @@ let colorHexes = {
 export const post: APIRoute = async ({ request }) => {
     if (request.headers.get("Content-Type") === "application/json") {
         const body = await request.json();
-        console.log(colorHexes);  // to put the variable in compilation
+        Deno.inspect(colorHexes.red);  // to put the variable in compilation
         return new Response(JSON.stringify({hex: eval('colorHexes.' + body.color)}), {status: 200});
     }
     return new Response(null, { status: 400 });

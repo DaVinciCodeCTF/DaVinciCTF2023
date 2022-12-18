@@ -1,8 +1,8 @@
 ---
 const pageTitle = "My blog";
-import Title from "../components/Title.astro";
-import Header from "../components/Navigation.astro";
-import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Content from "../components/Content.astro";
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -13,18 +13,8 @@ import "../styles/global.css";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Title />
+    <br><h1>Videos</h1>
     <Header />
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum maximus erat a porta. Sed quis nulla laoreet, cursus felis sit amet, rhoncus nulla. Phasellus eleifend vulputate odio, eu sollicitudin augue dignissim id. Duis posuere mi vel arcu efficitur venenatis ac vel lorem. Nullam vel mauris et ex molestie vulputate. Phasellus ac velit eget metus scelerisque commodo. Curabitur gravida tempus massa. Ut ornare lorem sit amet tellus lacinia, id auctor lorem feugiat. Nullam efficitur eleifend gravida. In vel massa sed velit imperdiet maximus. Duis faucibus, quam eget dapibus dapibus, lacus leo accumsan erat, quis elementum nulla ligula ut enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque eget vestibulum ex.
-
-      Maecenas cursus, eros sed commodo imperdiet, elit nisl aliquam erat, id laoreet nulla orci ut est. Phasellus nec neque pulvinar, vulputate urna ut, accumsan metus. Nulla finibus ante ac velit tristique iaculis maximus sit amet lorem. Aliquam malesuada dui sed nulla dignissim congue. Etiam nec nunc vel massa tincidunt ullamcorper ut at arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut tincidunt urna, vitae euismod dolor. Pellentesque sed sodales dolor. Phasellus tempus lobortis ipsum, et mollis lorem sodales vel. Cras mattis est et justo feugiat commodo.
-
-      Donec eget sapien quis velit rutrum gravida. Pellentesque malesuada suscipit lacinia. Nulla facilisi. Etiam efficitur lacus id consequat eleifend. Donec ex arcu, mattis quis mauris eu, rhoncus condimentum nisl. Suspendisse luctus risus ac tellus pretium lacinia. Duis quis bibendum nulla. Etiam ultrices euismod dolor. Suspendisse efficitur urna ut mi consectetur malesuada. Donec in diam arcu. Maecenas fermentum felis purus, at ultricies enim maximus eu.
-
-      Morbi tincidunt felis id metus placerat iaculis. Vivamus egestas sem eget urna venenatis, eu aliquet ante auctor. In eu suscipit odio. Phasellus aliquet magna id turpis bibendum venenatis. Pellentesque scelerisque laoreet lacus vel maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque bibendum eleifend leo et pellentesque. Nunc at risus sed nisi mollis gravida. Proin faucibus, purus vitae semper efficitur, tellus dolor malesuada mauris, nec tristique risus sapien ullamcorper turpis. Maecenas auctor lacus eget urna aliquam, in consequat odio vulputate. In vitae quam elit. Donec ac urna laoreet, ullamcorper augue a, varius ipsum. Suspendisse pretium quam sem, a semper dui hendrerit id. Ut rhoncus sem vel mauris fringilla, a facilisis dui eleifend.
-
-      Vestibulum suscipit mi augue, ac blandit libero luctus vel. Vestibulum rhoncus finibus augue vel pellentesque. Integer et urna feugiat, sagittis orci eget, blandit eros. Cras porta risus non dolor gravida mattis. Morbi varius ex ut hendrerit convallis. Pellentesque scelerisque velit et euismod elementum. Aenean convallis nulla congue eros porttitor laoreet. Curabitur dictum convallis enim nec viverra.
-    </p>
+    <Content />
   </body>
 </html>

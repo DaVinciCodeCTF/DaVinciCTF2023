@@ -1,8 +1,8 @@
 ---
 const pageTitle = "My blog";
-import Title from "../components/Title.astro";
-import Header from "../components/Navigation.astro";
-import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Content from "../components/Content.astro";
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -13,18 +13,8 @@ import "../styles/global.css";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Title />
+    <br><h1>Schedule</h1>
     <Header />
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae justo turpis. Nulla faucibus justo non ex sagittis ultricies. Aenean egestas quam id erat egestas vulputate. Sed sagittis elementum facilisis. Praesent feugiat diam id leo placerat, quis porta sem consectetur. Suspendisse in ante aliquam, malesuada risus non, consectetur enim. Suspendisse a velit nec dolor egestas sollicitudin. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque quis odio est. Mauris finibus nunc vel hendrerit cursus. Nulla feugiat diam nec faucibus pulvinar. Nunc justo diam, tincidunt et mi nec, convallis dignissim est. Integer eget cursus risus. Etiam sed libero sodales, gravida justo at, ultricies leo. Cras sit amet fermentum massa.
-
-      Ut a euismod nisi. Vestibulum ultrices diam odio, suscipit maximus mi hendrerit vel. Duis eget turpis quis nisi euismod tincidunt. Vestibulum vulputate mauris massa, a condimentum ligula hendrerit ac. Suspendisse potenti. Aliquam erat volutpat. Fusce vel est id ligula pretium tempus. Phasellus accumsan molestie quam vel suscipit. Donec congue felis vitae turpis elementum, vel eleifend nunc congue. Donec imperdiet, ipsum ac vestibulum luctus, lorem justo dapibus tortor, id imperdiet felis magna sed lacus.
-
-      Vivamus euismod rhoncus metus, quis suscipit ipsum feugiat ut. Phasellus a felis nec augue consequat tempus. Cras vehicula pellentesque velit, at mattis purus commodo eu. Ut augue est, auctor sit amet tincidunt a, sodales eu tellus. In eget mi ac nulla porttitor congue a non leo. Mauris hendrerit, velit nec posuere posuere, metus sapien pulvinar eros, eget rutrum turpis turpis quis elit. Nullam placerat nulla id pharetra rutrum. Nunc quis mi in sem auctor sollicitudin eget ac arcu. Maecenas sit amet interdum turpis, sed ornare augue. Curabitur pulvinar, sapien ac pellentesque aliquet, sem magna faucibus ex, at aliquet urna ipsum a ligula. Aenean nec dui vitae risus ornare aliquam vitae et magna. Nunc volutpat turpis gravida dui cursus consectetur. Quisque rhoncus quam at ipsum posuere convallis. Duis commodo massa et est pretium, ut pulvinar lacus congue.
-
-      Nam faucibus tristique risus, ut blandit justo rutrum nec. Morbi odio nisi, ullamcorper in imperdiet a, tincidunt ut justo. Ut sagittis risus at purus bibendum sodales. Sed mattis sapien sit amet cursus congue. Morbi tristique, metus eget dictum convallis, felis urna accumsan arcu, ac luctus nibh ligula quis nisi. Integer vel volutpat purus, vitae auctor elit. Sed luctus aliquet vestibulum.
-
-      Pellentesque congue suscipit ipsum, vitae ultricies sapien lacinia ut. Integer quis massa a eros aliquam fringilla. Praesent pharetra turpis vel egestas efficitur. Curabitur quis porttitor lorem. Cras nisl magna, rhoncus ac lorem vel, convallis tincidunt est. Suspendisse potenti. Sed id magna suscipit, auctor leo sit amet, semper dolor. Etiam quis finibus tortor, sit amet tristique ante. Quisque eu nibh eget odio tincidunt varius. Donec id ante vel nulla luctus aliquam eu vitae nibh. Etiam enim ante, pharetra ut elementum quis, tristique egestas elit. Donec vestibulum volutpat dolor in lacinia. In purus lectus, suscipit vel eros id, tristique dictum metus. Praesent eu laoreet orci, id auctor mi. Donec vitae leo in sapien feugiat sodales in nec neque.
-    </p>
+    <Content />
   </body>
 </html>

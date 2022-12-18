@@ -1,8 +1,7 @@
 ---
 const pageTitle = "My blog";
-import Title from "../components/Title.astro";
-import Header from "../components/Navigation.astro";
-import "../styles/global.css";
+import Header from "../components/Header.astro";
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -13,10 +12,10 @@ import "../styles/global.css";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Title />
+    <br><h1>Micro applications</h1>
     <Header />
     <p>
-      <label for="b64">Base64 decoder</label>
+      <label for="b64">Base64 decoder</label><br>
       <input id="b64" name="b64">
       <button name="button">OK</button>
       <p id="result"></p>
@@ -42,8 +41,9 @@ import "../styles/global.css";
           };
       </script>
     </p>
+    <br><br>
     <p>
-        <label for="color">Give me a color and I give you it's hexa code</label>
+        <label for="color">Give me a color and I give you it's hexa code</label><br>
         <input id="color" name="color">
         <button name="button">OK</button>
         <p id="result2"></p>
@@ -69,5 +69,29 @@ import "../styles/global.css";
             };
         </script>
     </p>
+    <br><br>
+    <p>
+      <label>Passphrase generation</label><br>
+      <button name="button">GENERATE</button>
+      <p id="result3"></p>
+      <script>
+          document.getElementsByName("button")[2].onclick = function(){
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "/passphrase");
+            xhr.send();
+            xhr.onload = function() {
+              if (xhr.status != 200) {
+                alert(`Error ${xhr.status}: ${xhr.statusText}`);
+              } else {
+                document.getElementById('result3').innerText = JSON.parse(xhr.response).passphrase.toString();
+              }
+            };
+
+            xhr.onerror = function() {
+              alert("Request failed");
+            };
+          };
+      </script>
+  </p>
   </body>
 </html>

@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-      "preview": "deno run --allow-env --allow-read=/app/astro_web_chall/admin_password_954d3f72c784179a.txt,/app/astro_web_chall/dist/client/favicon.ico --allow-net=0.0.0.0:8085 ./dist/server/entry.mjs"
+      "preview": "deno run --allow-env --allow-net=0.0.0.0:8085 --allow-read=/app/astro_web_chall/dist/client,/app/astro_web_chall/admin_password_954d3f72c784179a.txt ./dist/server/entry.mjs"
   },
   "keywords": [],
   "author": "",

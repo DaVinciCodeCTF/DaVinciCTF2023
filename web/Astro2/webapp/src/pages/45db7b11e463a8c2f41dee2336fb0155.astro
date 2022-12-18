@@ -1,6 +1,8 @@
 ---
 const pageTitle = "My blog";
 const flag = 'dvCTF{457r04NDD3N0FF1473047804732748794}'
+import Header from "../components/Header.astro";
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -11,7 +13,8 @@ const flag = 'dvCTF{457r04NDD3N0FF1473047804732748794}'
     <title>{pageTitle}</title>
   </head>
   <body>
-    <h1>My admin panel</h1>
+    <br><h1>Admin panel</h1>
+    <Header />
     <p>Well played ! The flag is : {flag}</p>
   </body>
 </html>
