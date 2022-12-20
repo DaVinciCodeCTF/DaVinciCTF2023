@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  chess:
+    build: .
+    ports:
+      - "6464:6464"
+    restart: always
