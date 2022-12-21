@@ -1,0 +1,24 @@
+version: '3'
+name: simple-login
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    environment:
+      - DATABASE_URL=mysql://davincicode:ao67AGmZUPxaiR@db:3306/dvc_db
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=davincicode
+      - MYSQL_PASSWORD=ao67AGmZUPxaiR
+      - MYSQL_DATABASE=dvc_db
+      - MYSQL_ROOT_PASSWORD=79TF2oRgMdE4HSUXH9av
+    volumes:
+      - ./app/init/:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    restart: always
