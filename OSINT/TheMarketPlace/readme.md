@@ -2,20 +2,19 @@
 **Category:** OSINT - **Difficulty:** Medium    
 **Description:**  
 Je ne souviens plus où j'ai fais courses...  
-> Flag format : dvCTF{place_market_code}
+> Flag format : dvCTF{nb_street_market}
 
 **Solution:**  
 Pour résoudre ce challenge, il faut d'abord trouver l'emplacement approximatif de la photo.  
 En envoyant la photo sur Yandex, l'emplacement est très vite trouvé. Sur Google Image, il faut réduire la zone de recherche au parc pour enfants.  
-Après cela, il faut trouver le lieu "exacte" de la photographie et donc prendre les différents repères pour trouver.  
-Une fois le l'emplacement en main, il faut voir le supermarché (U Express) le plus proche.  
-Le flag est caché dans les avis du magasin :  
-![image](https://user-images.githubusercontent.com/91023285/205145886-f73ecd3f-894a-44a9-9480-10debb3e7c92.png)  
+Après cela, il faut trouver le lieu "exact" de la photographie et donc prendre en compte les différents repères pour trouver.  
+Une fois le l'emplacement en main, il suffit de trouver le supermarché le plus proche (U Express).  
+Avec toutes ces données, le flag peut donc être reconstitué.  
   
 <details>
   <summary>:triangular_flag_on_post: FLAG</summary>
 
   ```
-  dvCTF{cap_esterel_u_express_534f039f9fc}
+  dvCTF{f1_allee_des_fleurs_u_express}
   ```
 </details>
