@@ -24,7 +24,7 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 # Set display port as an environment variable
 ENV DISPLAY=:99
 
-WORKDIR /home/masofgon/DVC/FirstChall/bot
+WORKDIR .
 
 COPY . .
 

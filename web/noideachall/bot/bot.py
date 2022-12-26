@@ -4,7 +4,7 @@ import os
 
 HOST = os.environ['HOST']
 URL = "http://"+ HOST + ":5000/list_files?"
-BOT_COOKIE = 'iV414B%*@RqqyiptLE$p'
+BOT_COOKIE = 'dvCTF{1_H@v3_F0und_My_1d34!}'
 
 opts = webdriver.ChromeOptions()
 opts.add_argument("--headless")
@@ -19,7 +19,6 @@ chrome_prefs["profile.default_content_settings"] = {"images": 2}
 driver = webdriver.Chrome(options=opts)
 driver.get(URL)
 time.sleep(5)
-driver.add_cookie({'name': 'admin', 'value': BOT_COOKIE, 'httpOnly': True, 'path': '/'})
 
 while True:
     try:
