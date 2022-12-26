@@ -2,6 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, send_file, render_template
 
 app = Flask(__name__, static_folder='static', static_url_path='')
+app.secret_key = '75Ts5#JAJ4KF'
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 def allowed_file(filename):
@@ -18,6 +19,9 @@ def index():
 @app.route("/file_upload", methods=['GET', 'POST'])
 def file_upload():
     if request.method == 'POST':
+        path = os.path.expanduser(u'uploads')
+        if os.path.exists(path)==False:
+            os.makedirs('uploads')
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -39,9 +43,12 @@ def file_upload():
 @app.route('/list_files', methods = ['GET'])  
 def list_files():
     path = os.path.expanduser(u'uploads')
-    files = os.listdir(path)
-    size = len(files)
-    return render_template('list_files.html', tree=files, sizeTree=size)
+    if os.path.exists(path):
+        files = os.listdir(path)
+        size = len(files)
+        return render_template('list_files.html', tree=files, sizeTree=size)
+    else:
+        return render_template('list_files.html', sizeTree=0)
 
 @app.route('/x', methods = ['GET'])
 def cheh():
@@ -50,7 +57,7 @@ def cheh():
 
 @app.route('/admin', methods = ['GET'])
 def admin():
-    adminCookie = 'iV414B%*@RqqyiptLE$p'
+    adminCookie = 'dvCTF{1_H@v3_F0und_My_1d34!}'
     userCookie = request.cookies.get('admin')
     if userCookie == adminCookie:
         return render_template('admin.html')
