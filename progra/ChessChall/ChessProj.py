@@ -4,7 +4,7 @@ import BoardToImage as bti
 import base64
 
 
-stockfish = Stockfish(path="stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64", depth=10, parameters={"Skill Level" : 2})
+stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64", depth=10, parameters={"Skill Level" : 2})
 
 fen_dep = "rnbqkbnr/pppppppp/11111111/11111111/11111111/11111111/PPPPPPPP/RNBQKBNR w KQkq"
 
@@ -89,10 +89,11 @@ for i in range(25):
                     win -=1
 
 
-                
+
             
 if win == 25 and (datetime.now()-dt) <= timedelta(minutes = 10) :
     print(f"you did it in {datetime.now()-dt} ! Congrats, here is your flag : ")
     print("DVCTF{Br4v0K4sP4r0V}")
 else:
     print("Sorry, I'm still better than u :)")
+    exit()

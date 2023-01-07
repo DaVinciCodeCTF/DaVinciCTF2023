@@ -1,14 +1,17 @@
-FROM alpine
+FROM ubuntu
 
-RUN apk update && apk add s6-networking python3.10 py3-pip
-RUN adduser carlsen -D
-RUN pip3 install stockfish
-RUN pip3 install numpy
-RUN pip3 install matplotlib
+RUN apt-get update
+RUN apt-get install -y python3 python3-pip socat
+RUN useradd carlsen -m
+RUN pip install --upgrade pip
+RUN pip install stockfish
+RUN pip install matplotlib
 
 COPY . /ChessChall/
 WORKDIR /ChessChall/
+RUN chown -R carlsen:carlsen .
+RUN chmod +x stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64
 
 USER carlsen
-CMD s6-tcpserver 0.0.0.0 6464 python3 ChessProj.py
 
+CMD ["sh", "-c", "socat TCP-LISTEN:6464,reuseaddr,fork EXEC:'python3 ChessProj.py',stderr,pty,echo=0", ""]
