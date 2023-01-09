@@ -4,7 +4,7 @@ import BoardToImage as bti
 import base64
 
 
-stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64", depth=10, parameters={"Skill Level" : 2})
+stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64", depth=5, parameters={"Skill Level" : 2})
 
 fen_dep = "rnbqkbnr/pppppppp/11111111/11111111/11111111/11111111/PPPPPPPP/RNBQKBNR w KQkq"
 
@@ -14,7 +14,7 @@ win = 0
 dt = datetime.now()
 
 
-for i in range(25):
+for i in range(15):
 
     stockfish.set_fen_position(fen_dep)
     info_color = 0
@@ -91,7 +91,7 @@ for i in range(25):
 
 
             
-if win == 25 and (datetime.now()-dt) <= timedelta(minutes = 10) :
+if win == 15 and (datetime.now()-dt) <= timedelta(minutes = 10) :
     print(f"you did it in {datetime.now()-dt} ! Congrats, here is your flag : ")
     print("DVCTF{Br4v0K4sP4r0V}")
 else:
