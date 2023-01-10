@@ -1,8 +1,10 @@
 FROM alpine
 
 RUN apk update && apk add s6-networking python3 
-RUN adduser piano2 -D
+RUN adduser chopin -D
 
 EXPOSE 7752
-USER piano2
-CMD s6-tcpserver 0.0.0.0 7752 python3 piano2.py
+USER chopin
+COPY ./answer_piano2.py /home/piano/answer_piano2.py
+COPY ./piano2.py /home/piano/piano2.py
+CMD s6-tcpserver 0.0.0.0 7752 python3 /home/piano/piano2.py
