@@ -14,7 +14,7 @@ win = 0
 dt = datetime.now()
 
 
-for i in range(15):
+for i in range(3):
 
     stockfish.set_fen_position(fen_dep)
     info_color = 0
@@ -91,9 +91,9 @@ for i in range(15):
 
 
             
-if win == 15 and (datetime.now()-dt) <= timedelta(minutes = 10) :
+if win == 3 and (datetime.now()-dt) <= timedelta(minutes = 1) :
     print(f"you did it in {datetime.now()-dt} ! Congrats, here is your flag : ")
     print("DVCTF{Br4v0K4sP4r0V}")
 else:
-    print("Sorry, I'm still better than u :)")
+    print("Sorry, you took too much time my student.")
     exit()

@@ -70,7 +70,7 @@ def Coup(fen1, fen2, c):
 
 def main():
     color = 1 #color%2 == 0 pour blanc 
-    stockfish = Stockfish(path="D:\Stockfish\stockfish_15_win_x64_avx2\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe")#mettre le path de son propre stockfish
+    stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64") #mettre le path de son propre stockfish
     r = remote('localhost',6464)
     
     stockfish.set_fen_position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -83,7 +83,11 @@ def main():
             data = r.recv(timeout = 1000)
     
         print(data.decode('UTF-8'))
-        board = b"iVBO"+data.split(b"iVBO")[1].split(b"\r\n")[0]
+        try:
+            board = b"iVBO"+data.split(b"iVBO")[1].split(b"\r\n")[0]
+        except:
+            print(data)
+            r.interactive()
         #print(board)
     
         
