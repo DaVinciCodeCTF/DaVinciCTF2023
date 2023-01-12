@@ -8,3 +8,6 @@
 > 
 > URL : `http://<host>:5000`
 > 
+
+
+For testing : `./run.sh 'host.docker.internal'`
