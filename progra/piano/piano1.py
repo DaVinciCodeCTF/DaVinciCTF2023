@@ -1,3 +1,8 @@
+import random
+import time
+
+from answer_piano1 import answer
+
 base_kb = """_____________________________
 |  | | | |  |  | | | | | |  |
 |  | | | |  |  | | | | | |  |
@@ -58,13 +63,48 @@ def r_replace(s, old, new, occ):
     li = s.rsplit(old, occ)
     return new.join(li)
 
-def answer(note, nb_kb):
+def get_suffix(nb_kb):
+    
+    if nb_kb == 1: return "st"
+    if nb_kb == 2: return "nd"
+    if nb_kb == 3: return "rd"
+    if nb_kb == 4: return "th"
 
-    kb = gen_kb(nb_kb)
+notes_cache = []
 
-    if "#" not in note:
-        kb = r_replace(kb, note, " X ", 1)
-    else:
-        kb = r_replace(kb, note, "X", 1)
+for i in range(len(notes)):
 
-    return clear_keyboard(kb)
+    print(f"n° {i+1}")
+
+    left_notes = [x for x in notes if x not in notes_cache]
+
+    rdm = random.randint(0, len(left_notes) - 1)
+
+    note = left_notes[rdm]
+
+    notes_cache.append(note)
+
+    time.sleep(0.1)
+
+    nb_kb = random.randint(1, 4)
+
+    print(f"Give me the {nb_kb}{get_suffix(nb_kb)} {fr_to_eng[note.replace('f', '')]} plz")
+
+    asked_kb = gen_kb(nb_kb)
+
+    if not "#" in note: asked_kb = r_replace(asked_kb, note, " X ", 1)
+    else: asked_kb = r_replace(asked_kb, note, "X", 1)
+
+    asked_kb = clear_keyboard(asked_kb)
+
+    #
+    ans = answer(note, nb_kb)
+    print(ans)
+    ans = input()
+    if ans != asked_kb:
+        print("????? wtf thats not what i asked")
+        exit()
+
+    print("Ty")
+
+print("Noice, here is your flag : dvCTF{K3yB04rd_n00b13}")
