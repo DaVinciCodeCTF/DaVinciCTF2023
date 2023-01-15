@@ -47,6 +47,7 @@ def file_upload():
 
 @app.route('/list_files', methods = ['GET'])  
 def list_files():
+    connected()
     path = os.path.expanduser(session['key'])
     if os.path.exists(path):
         files = os.listdir(path)
