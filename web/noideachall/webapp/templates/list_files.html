@@ -6,14 +6,14 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
 </head>
 <body>
-    <h1>You can check the files uploaded here</h1>
+    <h1>You can find the files I haven't read yet here</h1>
 
     <ul>
 	{% for file in tree %}
         <li>{{ file|safe }}</li>
 	{% endfor %}
 	{% if sizeTree == 0 %}
-	<p>No files uploaded</p>
+	    <p>No files uploaded or all files have been read</p>
 	{% endif %}
     </ul>
 </body>
