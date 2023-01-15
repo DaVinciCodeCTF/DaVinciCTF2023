@@ -3,7 +3,7 @@ import time
 import os
 
 HOST = os.environ['HOST']
-URL = "http://"+ HOST + ":5000/list_files?"
+URL = "http://"+ HOST + ":5000/4d7wF98sgnu6LaSI9WI5"
 BOT_COOKIE = 'dvCTF{1_H@v3_F0und_My_1d34!}'
 
 opts = webdriver.ChromeOptions()
