@@ -3,8 +3,35 @@ import time
 
 from datetime import datetime
 
-from answer_piano2 import answer, notes, fr_to_eng, chords, chords_keys, gen_prog
+# from answer_piano2 import answer, notes, fr_to_eng, chords, chords_keys, gen_prog
 
+notes = ["DOf", "DO#", "REf", "RE#", "MIf", "FAf", "FA#", "SOLf", "SOL#", "LAf", "LA#", "SIf"]
+
+fr_to_eng = {
+    "DO": "C",
+    "RE": "D",
+    "MI": "E", 
+    "FA": "F",
+    "SOL": "G",
+    "LA": "A",
+    "SI": "B",
+    "DO#": "C#",
+    "RE#": "D#",
+    "FA#": "F#",
+    "SOL#": "G#",
+    "LA#": "A#",
+}
+
+chords = {
+    "majeure": [0, 4, 3],
+    "mineure": [0, 3, 4]
+}
+
+chords_keys = list(chords.keys())
+
+def gen_prog(prog):
+
+    return "" if prog == "majeure" else "m"
 
 def clear_keyboard(kb):
 
@@ -87,10 +114,6 @@ for i in range(50):
     progression = gen_prog(elem["prog"])
 
     ans = input("Chord ? ")
-    # print("Chord ?")
-    # ans = answer(clear_kb)
-
-    # print(ans)
 
     delta = datetime.now() - c_time
 

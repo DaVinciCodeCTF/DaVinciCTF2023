@@ -1,3 +1,5 @@
+from pwn import *
+
 base_kb = """_____________________________
 |  | | | |  |  | | | | | |  |
 |  | | | |  |  | | | | | |  |
@@ -27,12 +29,7 @@ fr_to_eng = {
     "LA#": "A#",
 }
 
-from pwn import *
-
-r = remote("localhost",7751)
-
-print(r.recvline())
-
+eng_to_fr = inv_map = {v: k for k, v in fr_to_eng.iteritems()}
 
 def clear_keyboard(kb):
 
@@ -58,7 +55,10 @@ def gen_kb(length):
     for line in kb_lines:
         kb.append((line*length).replace("||", "|"))
 
-    kb[0] = kb[0][:-(length-1)]
+    if length > 1:
+
+        kb[0] = kb[0][:-(length-1)]
+
     return "\n".join(kb)
 
 def r_replace(s, old, new, occ):
@@ -76,3 +76,36 @@ def answer(note, nb_kb):
 
     return clear_keyboard(kb)
 
+
+r = remote("localhost",7751)
+
+while True:
+
+    idk = r.recvline()
+
+    if "flag" in idk: 
+        print(idk)
+        exit()
+
+    a = r.recvline()
+    a = a.decode()
+
+    print(a)
+
+    a = a.split(" ")
+
+    nb = int(a[3][0])
+
+    note = eng_to_fr[a[4]]
+
+    if note[-1] != "#":
+        note += "f"
+
+
+    ans = answer(note, nb)
+
+    print(ans)
+
+    r.send(ans)
+
+    

@@ -1,4 +1,5 @@
 import copy
+from pwn import *
 
 notes = ["DOf", "DO#", "REf", "RE#", "MIf", "FAf", "FA#", "SOLf", "SOL#", "LAf", "LA#", "SIf"]
 
@@ -45,8 +46,8 @@ def answer(kb):
 
     rows = kb.split("\n")
 
-    white_xrow = 6
-    black_xrow = 3
+    white_xrow = 7
+    black_xrow = 4
 
     black_row = rows[black_xrow]
     white_row = rows[white_xrow]
@@ -97,3 +98,23 @@ def answer(kb):
                 final_answer.append(fr_to_eng[notes[xs[x]].replace("f", "")] + gen_prog(chord))
 
     return final_answer
+
+r = remote("localhost",7753)
+
+while True:
+
+    a = r.recv().decode()
+
+    if "flag" in a:
+        print(a)
+        exit()
+
+    print(a)
+
+    ans = answer(a)
+
+    print(ans)
+
+    r.sendline(str(ans))
+
+    r.recvline() # catches the "yes"

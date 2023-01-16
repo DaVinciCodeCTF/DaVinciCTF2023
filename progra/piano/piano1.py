@@ -1,7 +1,7 @@
 import random
 import time
 
-from answer_piano1 import answer
+# from answer_piano1 import answer
 
 base_kb = """_____________________________
 |  | | | |  |  | | | | | |  |
@@ -56,7 +56,10 @@ def gen_kb(length):
     for line in kb_lines:
         kb.append((line*length).replace("||", "|"))
 
-    kb[0] = kb[0][:-(length-1)]
+    if length > 1:
+
+        kb[0] = kb[0][:-(length-1)]
+
     return "\n".join(kb)
 
 def r_replace(s, old, new, occ):
@@ -97,14 +100,14 @@ for i in range(len(notes)):
 
     asked_kb = clear_keyboard(asked_kb)
 
-    #
-    ans = answer(note, nb_kb)
-    print(ans)
-    ans = input()
+    ans = ""
+
+    for i in range(8):
+
+        ans += input() + "\n"
+
     if ans != asked_kb:
         print("????? wtf thats not what i asked")
         exit()
-
-    print("Ty")
 
 print("Noice, here is your flag : dvCTF{K3yB04rd_n00b13}")

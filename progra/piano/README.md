@@ -81,7 +81,7 @@ G#
 
 You have to give the correct chord name 50 times in a row
 
-Chords can be minor (m), major, augmented (+) or diminished (-). 
+Chords can be minor (m), major, augmented (+) or diminished (-). Since there can be multiple answers, you have to provide an array containing all correct answers.
 
 Keyboard length varies from 3 to 8 single keyboards.
 
