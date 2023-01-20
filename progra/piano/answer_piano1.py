@@ -44,7 +44,7 @@ def clear_keyboard(kb):
         else:
             clear_kb = clear_kb.replace(i, " ")
 
-    clear_kb = clear_kb.replace("#", "")
+    clear_kb = clear_kb.replace("#", " ")
 
     return clear_kb
 
@@ -85,7 +85,7 @@ while True:
 
     if "flag" in idk: 
         print(idk)
-        exit()
+        exit(0)
 
     a = r.recvline()
     a = a.decode()

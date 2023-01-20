@@ -4,7 +4,7 @@
 
 You have to give the correct answer 12 times in a row.
 
-Base keyboard is : 
+Base keyboard is :
 
 ``` 
 _____________________________
