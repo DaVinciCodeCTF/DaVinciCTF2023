@@ -171,4 +171,4 @@ for i in range(50):
         print("too slow o/")
         exit()
 
-print("You win ! Here is your flag : DVC{K3yB04rd_m4st3R}")
+print("You win ! Here is your flag : dvCTF{Y0U_4r3_7H3_P14N0_M4573r}")

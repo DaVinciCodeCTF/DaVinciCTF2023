@@ -110,4 +110,4 @@ for i in range(len(notes)):
         print("????? wtf thats not what i asked")
         exit()
 
-print("Noice, here is your flag : dvCTF{K3yB04rd_n00b13}")
+print("Noice, here is your flag : dvCTF{4r3_Y0U_7H3_N3X7_M0Z4r7?}")
