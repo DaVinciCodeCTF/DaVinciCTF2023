@@ -3,8 +3,6 @@ import time
 
 from datetime import datetime
 
-from answer_piano3 import answer
-
 base_kb = """_____________________________
 |  | | | |  |  | | | | | |  |
 |  | | | |  |  | | | | | |  |
