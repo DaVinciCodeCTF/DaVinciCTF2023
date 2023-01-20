@@ -29,7 +29,20 @@ fr_to_eng = {
     "LA#": "A#",
 }
 
-eng_to_fr = inv_map = {v: k for k, v in fr_to_eng.iteritems()}
+eng_to_fr = {
+    "C": "DO",
+    "D": "RE",
+    "E": "MI", 
+    "F": "FA",
+    "G": "SOL",
+    "A": "LA",
+    "B": "SI",
+    "C#": "DO#",
+    "D#": "RE#",
+    "F#": "FA#",
+    "G#": "SOL#",
+    "A#": "LA#",
+}
 
 def clear_keyboard(kb):
 
@@ -81,7 +94,7 @@ r = remote("localhost",7751)
 
 while True:
 
-    idk = r.recvline()
+    idk = r.recvline().decode()
 
     if "flag" in idk: 
         print(idk)
