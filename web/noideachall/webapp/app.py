@@ -24,9 +24,6 @@ def file_upload():
         path = os.path.expanduser(session['key'])
         if os.path.exists(path)==False:
             os.makedirs(session['key'])
-            fileFolderName = open("FoldersName", "a")
-            fileFolderName.write(session['key']+'\n')
-            fileFolderName.close()
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -39,7 +36,11 @@ def file_upload():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = file.filename
-            file.save(os.path.join(session['key'], filename))
+            pathFile = os.path.join(session['key'], filename)
+            file.save(pathFile)
+            fileFolderName = open("FilesName", "a")
+            fileFolderName.write(pathFile+'\n')
+            fileFolderName.close()
             return redirect('/list_files')
         else:
             return render_template('file_upload.html', error=True)
@@ -47,7 +48,6 @@ def file_upload():
 
 @app.route('/list_files', methods = ['GET'])  
 def list_files():
-    connected()
     path = os.path.expanduser(session['key'])
     if os.path.exists(path):
         files = os.listdir(path)
@@ -56,21 +56,27 @@ def list_files():
     else:
         return render_template('list_files.html', sizeTree=0)
 
-@app.route('/4d7wF98sgnu6LaSI9WI5')
+@app.route('/4d7wF98sgnu6LaSI9WI5', methods = ['GET'])
 def list_all_files():
-    files = []
-    file = open('FoldersName', 'r')
-    folders = file.readlines()
+    fileName = ''
+    file = open('FilesName', 'r')
+    lines = file.readlines()
+    if len(lines) >= 1:
+        fileName = lines[0]
     file.close()
-    for folder in folders:
-        folder = folder.replace('\n','')
-        path = os.path.expanduser(folder)
-        if os.path.exists(path):
-            files.extend(os.listdir(path))
-            shutil.rmtree(path)
+    rest=""
+    files=[]
+    for i in range(len(lines)): 
+        if i != 0:
+            rest += lines[i]
+    fileName = fileName.replace('\n','')
+    path = os.path.expanduser(fileName)
+    if os.path.exists(path):
+        files = [fileName]
+        os.remove(fileName)
     size = len(files)
-    file = open('FoldersName', 'w')
-    file.write('')
+    file = open('FilesName', 'w')
+    file.write(rest)
     file.close()
     return render_template('list_files.html', tree=files, sizeTree=size)
 
