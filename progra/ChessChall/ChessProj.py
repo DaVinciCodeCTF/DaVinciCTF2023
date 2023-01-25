@@ -9,7 +9,7 @@ stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stoc
 fen_dep = "rnbqkbnr/pppppppp/11111111/11111111/11111111/11111111/PPPPPPPP/RNBQKBNR w KQkq"
 
 
-print("Hello :) \nLet's play some chess \nI want to find someone better than me. \nYou will have to beat me 15 five times in a row. \nTo do this, look at the board and send your move like this : StartingSquareFinalSquare (e2e4 for example)\n")
+print("Hello :) \nLet's play some chess \nI want to find someone better than me. \nYou will have to beat me 3 times in a row. \nTo do this, look at the board and send your move like this : StartingSquareFinalSquare (e2e4 for example)\n")
 win = 0
 dt = datetime.now()
 
