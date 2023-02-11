@@ -6,7 +6,7 @@ Morever, here is my Gmail account: *dav1d.c1cod3@gmail.com*
 > Flag format : dvCTF{part1_part2_part3}  
 
 **Solution:**  
-To solve this challenge, you need to use Ghunt and follow the steps below:
+To solve this challenge, you need to use Ghunt and follow the steps below:  
 - Ghunt email : *ghunt email dav1d.c1cod3@gmail.com*
 - We can find his Maps account : https://www.google.com/maps/contrib/116570179360508069806/reviews
 - There are 4 photos on his Maps account and the 1st one has a flag part (see the white price tag)
