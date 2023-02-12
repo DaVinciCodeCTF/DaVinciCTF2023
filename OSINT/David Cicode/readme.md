@@ -25,6 +25,6 @@ To solve this challenge, you need to use Ghunt and follow the steps below:
   <summary>:triangular_flag_on_post: FLAG</summary>
 
   ```
-  dvCTF{gHun7_c4N_b3_U53fU1_}
+  dvCTF{gHun7_c4N_b3_U53fU1_jYyMjk4NWRk}
   ```
 </details>
