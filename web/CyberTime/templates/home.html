@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+    <link rel="stylesheet" href="/css.css">
+</head>
+<body>
+    <div id="username">{{ username }}</div>
+    <div id="time_tool">
+        <p>Enter a timestamp in seconds : </p>
+        <input id="timestamp" value="1549312452"><br><br>
+        <button onclick="convert_timestamp()">OK</button>
+        <p id="result"></p>
+    </div>
+    <div id="chat">
+        <input id="feedback" value="Send a feedback to admin">
+        <p id="admin_message"></p>
+    </div>
+    <script src="/home.js"></script>
+</body>
+</html>
