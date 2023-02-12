@@ -1,12 +1,17 @@
-### David Cicode
+### David Cicode 2/2
 **Category:** OSINT - **Difficulty:** Easy  
 **Description:**  
-I love Google and all the services it provides and also those that rely on it.  
-Morever, here is my Gmail account: *dav1d.c1cod3@gmail.com*  
+You found David's gmail account in the first part of the challenge, let's see what informations you can recover from it.  
+  
+
 > Flag format : dvCTF{part1_part2_part3}  
 
 **Solution:**  
+
+Gmail account: dav1d.c1cod3@gmail.com
+
 To solve this challenge, you need to use Ghunt and follow the steps below:  
+
 - Ghunt email : *ghunt email dav1d.c1cod3@gmail.com*
 - We can find his Maps account : https://www.google.com/maps/contrib/116570179360508069806/reviews
 - There are 4 photos on his Maps account and the 1st one has a flag part (see the white price tag)
@@ -15,11 +20,11 @@ To solve this challenge, you need to use Ghunt and follow the steps below:
 - Once we are on the Google Groups, we can check all the mails and find the last flag part (March Event 💻)
 
 (Je pense que j'ajouterais des images sur Maps et quelques events sur Calendar pour que ce soit plus mélangé)
-  
+
 <details>
   <summary>:triangular_flag_on_post: FLAG</summary>
 
   ```
-  dvCTF{gHun7_c4N_b3_U53fU1_jYyMjk4NWRk}
+  dvCTF{gHun7_c4N_b3_U53fU1_}
   ```
 </details>
