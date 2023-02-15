@@ -1,13 +1,10 @@
-memory_file = open("memory_dump", "wb")
-cipher = open("intercepted_message", 'w')
-
-FLAG = "7h3_Cl0ck_1s_71ck1n9!"
-
 from Crypto.Cipher import AES
-import hashlib
+from hashlib import sha256
 from Crypto.Util.number import getPrime, inverse
+from Crypto.Util.Padding import pad, unpad
 import os
 import random
+import string
 
 from collections import namedtuple
 Point = namedtuple("Point", "x y")
@@ -47,13 +44,20 @@ def point_addition(P: tuple, Q: tuple):
 def double_and_add(P: tuple, n: int):
     Q = P
     R = O
+    r = 0
     while n > 0:
         if n % 2 == 1:
             R = point_addition(R, Q)
         Q = point_addition(Q, Q)
         n = n // 2
+        r += 1
     assert check_point(R)
     return R
+
+memory_file = open("memory_dump", "wb")
+cipher = open("intercepted_message", 'w')
+
+FLAG = b"7h3_Cl0ck_1s_71ck1n9!"
 
 # secp256r1 -- P-256
 p = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
@@ -68,12 +72,55 @@ while (leonard_private_key > n) :
     leonard_private_key = getPrime(256)
 leonard_public_key = double_and_add(G,leonard_private_key)
 """
+
+"""
+my_private_key = n
+while bin(my_private_key)[2:][:36].count('1') != 8 :
+    my_private_key = getPrime(244)
+"""
+
 leonard_private_key = 100437665457807818500415257304045707893130424946425139206421043743314015525801
 leonard_public_key = Point(x=31663442885885219669071274428005652588471134165143253841118506078548146970109, y=39635812297918732160112763208832215566025963497149555858771120961875750706113)
 
-for k in range(100) :
-    my_private_key = random.randint(1,n//4)
+my_private_key = 21206940479476161658981736722571906543259287261436711538322391549977913227
+my_public_key = double_and_add(G, my_private_key)
 
+computing_time = 30*(my_private_key.bit_length() + my_private_key.bit_count() - 1) + 3 + random.random()
 
+shared_secret_key = double_and_add(leonard_public_key, my_private_key).x
 
+derived_aes_key = sha256(str(shared_secret_key).encode('ascii')).digest()
+iv = os.urandom(16)
+ciphertext = AES.new(derived_aes_key, AES.MODE_CBC, iv).encrypt(pad(FLAG,16,'pkcs7'))
 
+cipher.writelines([str(my_public_key.x)+'\n', "You can be proud I can compute my message in less than {}ms".format(computing_time)+'\n', iv.hex()+'\n', ciphertext.hex()])
+
+leak = hex(my_private_key)[11:]
+
+def garbage(file, n) :
+    alphabet = list(string.printable)[:-6]
+    for k in range(1,n+1) :
+        if 0.05 > random.random() :
+            file.write(random.choice(alphabet).encode('ascii'))
+        else :
+            file.write(bytes(1))
+        if k%32 == 0 :
+            file.write('\n'.encode('ascii'))
+    if n%32 :
+        file.write('\n'.encode('ascii'))
+
+def void(file, n) :
+    for k in range(1,n+1) :
+        file.write(bytes(1))
+        if k%32 == 0 :
+            file.write('\n'.encode('ascii'))
+
+garbage(memory_file, 299)
+void(memory_file, 32*2+17)
+leak_format = [leak[k:k+2] if k%2 == 0 else ':' for k in range(-1,len(leak)-1)]
+memory_file.write(("".join(leak_format[:15])+'\n').encode('ascii'))
+memory_file.write(("".join(leak_format[15:47])+'\n').encode('ascii'))
+memory_file.write(("".join(leak_format[47:])+'\n').encode('ascii'))
+garbage(memory_file, 119)
+garbage(memory_file, 369)
+garbage(memory_file, 69)

@@ -1,6 +1,7 @@
 from Crypto.Cipher import AES
-import hashlib
+from hashlib import sha256
 from Crypto.Util.number import getPrime, inverse
+from Crypto.Util.Padding import pad, unpad
 import random
 from time import time
 import os
@@ -17,7 +18,7 @@ def point_inverse(P: tuple):
         return P
     return Point(P.x, -P.y % p)
 
-def point_addition(P: tuple, Q: tuple): # approx. time around 40µs
+def point_addition(P: tuple, Q: tuple): # approx. time around 30µs when entering else's segment
     if P == O:
         return Q
     elif Q == O:
@@ -26,7 +27,7 @@ def point_addition(P: tuple, Q: tuple): # approx. time around 40µs
         return O
     else:
         if P == Q:
-            aux = ((3*P.x**2 + a)*inverse(2*P.y, p))%p
+            aux = ((3*P.x**2 + a) * inverse(2*P.y, p))%p
         else:
             aux = ((Q.y - P.y) * inverse((Q.x - P.x), p))%p
     Rx = (aux**2 - P.x - Q.x) % p
@@ -44,6 +45,8 @@ def double_and_add(P: tuple, n: int):
         n = n // 2
     return R
 
+FLAG = b"?????????????????"
+
 p = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
 a = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC
 b = 0x5AC635D8AA3A93E7B3EBBD55769886BC651D06B0CC53B0F63BCE3C3E27D2604B
@@ -52,18 +55,30 @@ n = 0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551
 
 # Leonard's public key
 leonard_public_key = 31663442885885219669071274428005652588471134165143253841118506078548146970109
+leonard_public_point = Point(leonard_public_key, tonelli_shanks((leonard_public_key**3 + a*leonard_public_key + b)%p,p)[0])
 
+# My private key
+length = 256 - random.randint(0,26)
 my_private_key = n
-while not(n > my_private_key > n//16) :
-    my_private_key = random.randint(1,n-1)
+while my_private_key >= n :
+    my_private_key = random.randint(2**(length-1),2**length)
 
 # My public key:
-my_public_key = double_and_add(G,my_private_key).x
+my_public_key = double_and_add(G, my_private_key).x
+print(my_public_key)
 
 # Our shared private key:
 begin = time()
-shared_secret_key = double_and_add(Point(leonard_public_key, (leonard_public_key**3 + a*leonard_public_key + b)%p), my_private_key)
-computing_time = time() - begin
+shared_secret_key = double_and_add(leonard_public_point, my_private_key).x
+for k in range(999999) : # I want to be precise on the computing time
+    double_and_add(leonard_public_point, my_private_key)
+computing_time = (time() - begin)/1000000
+print("You can be proud I can compute my message in less than {}ms".format(computing_time*1000000))
 
 # Encryption of my message
-derived_aes_key = 0
+derived_aes_key = sha256(str(shared_secret_key).encode('ascii')).digest()
+iv = os.urandom(16)
+cipher = AES.new(derived_aes_key, AES.MODE_CBC, iv)
+ciphertext = cipher.encrypt(pad(FLAG,16,'pkcs7'))
+print(iv.hex())
+print(ciphertext.hex())
