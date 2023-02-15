@@ -1,20 +1,20 @@
 ### da Vinci's Clock
-**Category:** crypto
-**Subcategory:** ECC
-**Difficulty:** Easy/Medium 
+**Category:** crypto  
+**Subcategory:** ECC  
+**Difficulty:** Easy/Medium  
 **Description:**  
 Leonard and his friend are discussing but his friend can't help but brag about the speed of his new computer.
 As part of an investigation, we manage to eavesdrop a part of their exchange and recovered a dump of his friend's memory.
 The memory is a bit corrupted but would you able to recover the intercepted message ?
 
-> Files: chall.py ; intercepted_message ; memory_dump
+> Files: chall.py; intercepted_message; memory_dump  
 > Flag format: dvCTF{FLAG}
 
-**Additional information:**
+**Additional information:**  
 
-**Solution:**
+**Solution:**  
 
-
+  
 <details>
   <summary>:triangular_flag_on_post: FLAG</summary>
 
