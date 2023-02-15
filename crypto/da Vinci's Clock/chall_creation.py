@@ -1,6 +1,6 @@
 from Crypto.Cipher import AES
 from hashlib import sha256
-from Crypto.Util.number import getPrime, inverse
+from Crypto.Util.number import getPrime, inverse, isPrime
 from Crypto.Util.Padding import pad, unpad
 import os
 import random
@@ -71,18 +71,16 @@ leonard_private_key = n+1
 while (leonard_private_key > n) :
     leonard_private_key = getPrime(256)
 leonard_public_key = double_and_add(G,leonard_private_key)
-"""
-
-"""
-my_private_key = n
-while bin(my_private_key)[2:][:36].count('1') != 8 :
-    my_private_key = getPrime(244)
+my_private_key = int("1010000000100000001000000001",2)*(2**216) + 2*random.randint(1,2**215-1) + 1
+while not(isPrime(my_private_key)) :
+    my_private_key += 2
+print(my_private_key)
 """
 
 leonard_private_key = 100437665457807818500415257304045707893130424946425139206421043743314015525801
 leonard_public_key = Point(x=31663442885885219669071274428005652588471134165143253841118506078548146970109, y=39635812297918732160112763208832215566025963497149555858771120961875750706113)
 
-my_private_key = 21206940479476161658981736722571906543259287261436711538322391549977913227
+my_private_key = 17682328204146272905210039108115891745288961985724695248683935036009974579
 my_public_key = double_and_add(G, my_private_key)
 
 computing_time = 30*(my_private_key.bit_length() + my_private_key.bit_count() - 1) + 3 + random.random()
@@ -95,7 +93,7 @@ ciphertext = AES.new(derived_aes_key, AES.MODE_CBC, iv).encrypt(pad(FLAG,16,'pkc
 
 cipher.writelines([str(my_public_key.x)+'\n', "You can be proud I can compute my message in less than {}ms".format(computing_time)+'\n', iv.hex()+'\n', ciphertext.hex()])
 
-leak = hex(my_private_key)[11:]
+leak = hex(my_private_key)[9:]
 
 def garbage(file, n) :
     alphabet = list(string.printable)[:-6]
