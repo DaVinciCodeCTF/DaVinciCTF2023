@@ -58,10 +58,7 @@ leonard_public_key = 31663442885885219669071274428005652588471134165143253841118
 leonard_public_point = Point(leonard_public_key, tonelli_shanks((leonard_public_key**3 + a*leonard_public_key + b)%p,p)[0])
 
 # My private key
-length = 256 - random.randint(0,26)
-my_private_key = n
-while my_private_key >= n :
-    my_private_key = random.randint(2**(length-1),2**length)
+my_private_key = random.randint(2**(243),2**244-1)
 
 # My public key:
 my_public_key = double_and_add(G, my_private_key).x

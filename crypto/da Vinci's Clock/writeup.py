@@ -62,7 +62,7 @@ ciphertext = bytes.fromhex(intercepted_message[3])
 # Data from the code
 leonard_public_key = 31663442885885219669071274428005652588471134165143253841118506078548146970109
 leonard_public_point = Point(leonard_public_key, tonelli_shanks((leonard_public_key**3 + a*leonard_public_key + b)%p,p)[0])
-possible_key_length = {k for k in range(240,257)}
+length = 244
 
 # Data from the memory dump
 # We notice that the start have been truncated, the end seems right without any corrupted data after it
@@ -86,8 +86,7 @@ n_operations = round(computing_time/30)
 
 # Recovering the private key
 # Supposing the bit length, one can determine the bit count allowing them to reconstruct the possible higher bits of the private key.
-length_bitcount = {length-len(lower_bits):n_operations-length+1-lower_bits.count('1') for length in possible_key_length}
-length_bitcount = [(key,value) for key,value in length_bitcount.items() if value > 0]
+length_bitcount = (length-len(lower_bits),n_operations-length+1-lower_bits.count('1'))
 
 def higher_bits(count1, length, res) : # returns the binary representation of numbers with this length and count1 as bit_count()
     assert length > 0
@@ -107,16 +106,11 @@ def higher_bits(count1, length, res) : # returns the binary representation of nu
                 res.add(bits[:k]+'1'+bits[k+1:])
     return higher_bits(count1-1, length, res)
 
-priv_key = 0
-length_bitcount.sort(key=lambda item : item[1]) # Starting with length and bit_count for higher bits with the less entropy
-for length, count1 in length_bitcount :
-    possible_higher_bits = higher_bits(count1, length, set())
-    for bits in possible_higher_bits :
-        possible_key = int(bits + lower_bits,2)
-        if double_and_add(G, possible_key).x == pub_key :
-            priv_key = possible_key
-            break
-    if priv_key :
+possible_higher_bits = higher_bits(length_bitcount[1], length_bitcount[0], set())
+for bits in possible_higher_bits :
+    possible_key = int(bits + lower_bits,2)
+    if double_and_add(G, possible_key).x == pub_key :
+        priv_key = possible_key
         break
 
 shared_secret_key = double_and_add(leonard_public_point, priv_key).x
