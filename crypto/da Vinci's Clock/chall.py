@@ -7,7 +7,6 @@ from time import time
 import os
 
 from tonelli_shanks import tonelli_shanks
-# tonelli_shanks(a,p) returns 2 square roots of {a} modulo {p}
 
 from collections import namedtuple
 Point = namedtuple("Point", "x y")
@@ -45,7 +44,7 @@ def double_and_add(P: tuple, n: int):
         n = n // 2
     return R
 
-FLAG = b"?????????????????"
+FLAG = b"[REDACTED]" 
 
 p = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF
 a = 0xFFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFC

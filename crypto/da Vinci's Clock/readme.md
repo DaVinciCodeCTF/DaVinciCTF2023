@@ -1,8 +1,8 @@
 ### da Vinci's Clock
 **Category:** crypto  
-**Subcategory:** ECC  
-**Difficulty:** Easy/Medium  
-  
+**(Subcategory:** ECC)
+**Difficulty:** Medium  
+
 **Description:**  
 Leonard and his friend are discussing but his friend can't help but brag about the speed of his new computer.  
 As part of an investigation, we managed to eavesdrop a part of their exchange and recovered a dump of his friend's memory.  
@@ -13,14 +13,14 @@ The memory is a bit corrupted but would you able to recover the intercepted mess
 
 **Additional information:**  
 The solution requires offline bruteforcing to test every possiblities, it should take less than a couple of minutes at most.  
-  
+
 **Solution:**  
 Please, refer to the writeup python file for the solution.  
 Some explanations are directly available inside the code.  
 
 > Vulnerability: The computing time gives an idea of the bit count of the private key.  
 > Using the memory leak to retrieve the end of the private key, it seems that the higher bits of the key contain more 0 than 1 hence the possibility of brute forcing the missing part of the key, working in this case specifically. (statistically and taking in account the time needed for a single ECC calculation, it shouldn't be possible in most cases).
-  
+
 <details>
   <summary>:triangular_flag_on_post: FLAG</summary>
 
