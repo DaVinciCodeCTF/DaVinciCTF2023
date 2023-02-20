@@ -65,16 +65,16 @@ leonard_public_point = Point(leonard_public_key, tonelli_shanks((leonard_public_
 length = 244
 
 # Data from the memory dump
-# We notice that the start have been truncated, the end seems right without any corrupted data after it
-end_priv_key = int("5d:7f:b8:dd:b1:84:dd:77:f5:eb:98:d5:df:7f:da:97:6c:cd:6a:9f:ff:f8:92:70:11:8b:33".replace(':',''),16)
-lower_bits = '0'*((4-len(bin(end_priv_key)[2:])%4)%4) + bin(end_priv_key)[2:]
+# We notice that bits have been corrupted during the extraction
+corrupted_priv_key = "".join(open("memory_dump",'r').readlines()[13:15]).replace('\n','').replace(':','')
+corrupted_priv_key = '1' + corrupted_priv_key[-length+1:] # we know the length and starts with a '1'
 
 # Exploiting the given computing time
 """
 Looking at the double_and_add function:
     We can see the computed time as the time needed for the point_addition function calls.
     (The time for the loops and affectations is negligible compare to the time needed for the calculations)
-    There is at least a '1' in the binary representation of the private key.
+    (There is at least a '1' in the binary representation of the private key, so it enters at least once in the if statement)
     When entering the if statement for the first time, the time needed for the point_addition call is negligible (R = O so only a test is carry out)
     At any other moment, point_addition call takes around 30µs (going into the else's segment)
     So the time needed by the double_and_add(P,n) function can be written as:
@@ -85,8 +85,8 @@ Looking at the double_and_add function:
 n_operations = round(computing_time/30)
 
 # Recovering the private key
-# Supposing the bit length, one can determine the bit count allowing them to reconstruct the possible higher bits of the private key.
-length_bitcount = (length-len(lower_bits),n_operations-length+1-lower_bits.count('1'))
+# Knowing the bit length, one can determine the bit count allowing them to reconstruct the missing bits of the private key.
+missing_bits_and_1s = (corrupted_priv_key.count('?'),n_operations-length+1-corrupted_priv_key.count('1'))
 
 def higher_bits(count1, length, res) : # returns the binary representation of numbers with this length and count1 as bit_count()
     assert length > 0
@@ -97,8 +97,8 @@ def higher_bits(count1, length, res) : # returns the binary representation of nu
             res.add(bits.replace('N','0'))
         return res
     if not res :
-        res.add('1' + 'N'*(length-1))
-        return higher_bits(count1-1, length, res)
+        res.add('N'*(length))
+        return higher_bits(count1, length, res)
     for bits in res.copy() :
         res.discard(bits)
         for k in range(length) :
@@ -106,11 +106,15 @@ def higher_bits(count1, length, res) : # returns the binary representation of nu
                 res.add(bits[:k]+'1'+bits[k+1:])
     return higher_bits(count1-1, length, res)
 
-possible_higher_bits = higher_bits(length_bitcount[1], length_bitcount[0], set())
-for bits in possible_higher_bits :
-    possible_key = int(bits + lower_bits,2)
-    if double_and_add(G, possible_key).x == pub_key :
-        priv_key = possible_key
+possible_missing_bits = higher_bits(missing_bits_and_1s[1], missing_bits_and_1s[0], set())
+possible_priv_key = list(corrupted_priv_key)
+missing_index = [index for index in range(len(corrupted_priv_key)) if corrupted_priv_key[index] == '?']
+for bits in possible_missing_bits :
+    for i in range(len(missing_index)) :
+        possible_priv_key[missing_index[i]] = bits[i]
+    key_to_test = int("".join(possible_priv_key),2)
+    if double_and_add(G, key_to_test).x == pub_key :
+        priv_key = key_to_test
         break
 
 shared_secret_key = double_and_add(leonard_public_point, priv_key).x

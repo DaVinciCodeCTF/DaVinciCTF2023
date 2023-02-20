@@ -68,8 +68,8 @@ begin = time()
 shared_secret_key = double_and_add(leonard_public_point, my_private_key).x
 for k in range(999999) : # I want to be precise on the computing time
     double_and_add(leonard_public_point, my_private_key)
-computing_time = (time() - begin)/1000000
-print("You can be proud I can compute my message in less than {}ms".format(computing_time*1000000))
+computing_time = (time() - begin)
+print("You can be proud I can compute my message in less than {}ms".format(computing_time))
 
 # Encryption of my message
 derived_aes_key = sha256(str(shared_secret_key).encode('ascii')).digest()
