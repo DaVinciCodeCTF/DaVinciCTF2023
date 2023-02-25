@@ -71,16 +71,15 @@ leonard_private_key = n+1
 while (leonard_private_key > n) :
     leonard_private_key = getPrime(256)
 leonard_public_key = double_and_add(G,leonard_private_key)
-my_private_key = int("1010000000100000001000000001",2)*(2**216) + 2*random.randint(1,2**215-1) + 1
-while not(isPrime(my_private_key)) :
-    my_private_key += 2
+for k in range(100) :
+    my_private_key = getPrime(244)
 print(my_private_key)
 """
 
 leonard_private_key = 100437665457807818500415257304045707893130424946425139206421043743314015525801
 leonard_public_key = Point(x=31663442885885219669071274428005652588471134165143253841118506078548146970109, y=39635812297918732160112763208832215566025963497149555858771120961875750706113)
 
-my_private_key = 17682328204146272905210039108115891745288961985724695248683935036009974579
+my_private_key = 27610939802316035421304285370883343604756496045638121948548836716464321927
 my_public_key = double_and_add(G, my_private_key)
 
 computing_time = 30*(my_private_key.bit_length() + my_private_key.bit_count() - 1) + 3 + random.random()
@@ -92,8 +91,6 @@ iv = os.urandom(16)
 ciphertext = AES.new(derived_aes_key, AES.MODE_CBC, iv).encrypt(pad(FLAG,16,'pkcs7'))
 
 cipher.writelines([str(my_public_key.x)+'\n', "You can be proud I can compute my message in less than {}ms".format(computing_time)+'\n', iv.hex()+'\n', ciphertext.hex()])
-
-leak = hex(my_private_key)[9:]
 
 def garbage(file, n) :
     alphabet = list(string.printable)[:-6]
@@ -107,18 +104,26 @@ def garbage(file, n) :
     if n%32 :
         file.write('\n'.encode('ascii'))
 
-def void(file, n) :
-    for k in range(1,n+1) :
-        file.write(bytes(1))
-        if k%32 == 0 :
-            file.write('\n'.encode('ascii'))
+def corruption_bin(key : int) : # 3 parmi 47
+    key_bin = bin(key)[3:]
+    res = "?"
+    index_1 = random.sample([index for index in range(len(key_bin)) if key_bin[index] == '1'], k=3)
+    index_0 = random.sample([index for index in range(len(key_bin)) if key_bin[index] == '0'], k=47-3)
+    index = set(index_1).union(set(index_0))
+    for k in range(len(key_bin)) :
+        if k in index :
+            res += '?'
+        else :
+            res += key_bin[k]
+    return res.zfill((8-len(res)%8 if len(res)%8 else 0)+len(res))
+
+leak = corruption_bin(my_private_key)
+leak_format = [leak[k:k+8] if k%8 == 0 else ':' for k in range(0,len(leak)-4,4)]
 
 garbage(memory_file, 299)
-void(memory_file, 32*2+17)
-leak_format = [leak[k:k+2] if k%2 == 0 else ':' for k in range(-1,len(leak)-1)]
-memory_file.write(("".join(leak_format[:15])+'\n').encode('ascii'))
-memory_file.write(("".join(leak_format[15:47])+'\n').encode('ascii'))
-memory_file.write(("".join(leak_format[47:])+'\n').encode('ascii'))
+garbage(memory_file, 32*2+17)
+for k in range(0,len(leak_format),32) :
+    memory_file.write(("".join(leak_format[k:k+32])+'\n').encode('ascii'))
 garbage(memory_file, 119)
 garbage(memory_file, 369)
 garbage(memory_file, 69)
