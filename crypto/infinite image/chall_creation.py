@@ -2,20 +2,23 @@ from PIL import Image
 import random
 import math
 
-FLAG = b"dvCTF{[a-z0-9_]+}"
-LSB = "".join([format(l,'b').zfill(8) for l in FLAG]).zfill(8*3*math.ceil(len(FLAG)/3))
+FLAG = b"dvCTF{w3lc0m3_4ll_t0_cr9pt0gr4ph9}"
+LSB = "".join([format(l,'b').zfill(8) for l in FLAG]).zfill(24*math.ceil(len(FLAG)/3))
 
-leonards_image = Image.open("start_image.png")
+leonards_image = Image.open("Leonards_image.png")
 mode, (columns, rows) = leonards_image.mode, leonards_image.size
 half, size = columns+rows, columns*rows
 
 message = Image.new(mode, (columns, rows))
 
+# Add noise to the image
 for r in range(rows) :
     for c in range(columns) :
         pixel = tuple((val+random.randint(0,1))%256 for val in leonards_image.getpixel((c,r))[:3])
         message.putpixel((c,r), pixel)
+leonards_image.close()
 
+# LSB on pseudo-random points
 z = size
 while len(FLAG) > 3*(size-z)//(8*2*100) :
     starting_point = (random.randint(0,columns-1),random.randint(0,rows-1))
@@ -26,5 +29,9 @@ for k in range(0,len(LSB),3) :
     val = tuple(((p&254)+int(LSB[k+i])) for (i,p) in list(enumerate(message.getpixel(point)))[:3])
     message.putpixel(point,val)
 
-message.save("message.png")
-print(point)
+message.save("message.png") # Saving the LSB message image
+message.close()
+
+message_file = open("message", 'w')
+message_file.write(str(point)) # Saving the last point
+message_file.close()

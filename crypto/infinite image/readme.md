@@ -8,7 +8,7 @@ Leonard is using a singular LSB algorithm to send a message to his club and you.
 Are you worthy enough to read his message ? Is it even possible ?  
 
 > Files: chall.py; message.png; message  
-> Flag format: dvCTF{[REDACTED]}  
+> Flag format: dvCTF{[a-z0-9_]+}  
 
 **Additional information:**  
   
@@ -24,6 +24,6 @@ Some explanations are directly available inside the code.
   <summary>:triangular_flag_on_post: FLAG</summary>
 
   ```
-  dvCTF{W3lc0m3_4ll_T0_Cr9pt0gr4ph9!}
+  dvCTF{w3lc0m3_4ll_t0_cr9pt0gr4ph9}
   ```
 </details>
