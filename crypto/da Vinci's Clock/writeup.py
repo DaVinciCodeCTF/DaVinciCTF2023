@@ -96,9 +96,13 @@ def higher_bits(count1, length, res) : # returns the binary representation of nu
             res.discard(bits)
             res.add(bits.replace('N','0'))
         return res
+    if its in res.copy() :
+            res.discard(bits)
+            res.add(bits.replace('N','0'))
+        return res
     if not res :
-        res.add('1' + 'N'*(length-1))
-        return higher_bits(count1-1, length, res)
+        res.add('N'*(length))
+        return higher_bits(count1, length, res)
     for bits in res.copy() :
         res.discard(bits)
         for k in range(length) :
@@ -106,11 +110,15 @@ def higher_bits(count1, length, res) : # returns the binary representation of nu
                 res.add(bits[:k]+'1'+bits[k+1:])
     return higher_bits(count1-1, length, res)
 
-possible_higher_bits = higher_bits(length_bitcount[1], length_bitcount[0], set())
-for bits in possible_higher_bits :
-    possible_key = int(bits + lower_bits,2)
-    if double_and_add(G, possible_key).x == pub_key :
-        priv_key = possible_key
+possible_missing_bits = higher_bits(missing_bits_and_1s[1], missing_bits_and_1s[0], set())
+possible_priv_key = list(corrupted_priv_key)
+missing_index = [index for index in range(len(corrupted_priv_key)) if corrupted_priv_key[index] == '?']
+for bits in possible_missing_bits :
+    for i in range(len(missing_index)) :
+        possible_priv_key[missing_index[i]] = bits[i]
+    key_to_test = int("".join(possible_priv_key),2)
+    if double_and_add(G, key_to_test).x == pub_key :
+        priv_key = key_to_test
         break
 
 shared_secret_key = double_and_add(leonard_public_point, priv_key).x

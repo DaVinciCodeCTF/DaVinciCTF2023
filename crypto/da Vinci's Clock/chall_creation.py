@@ -121,4 +121,13 @@ memory_file.write(("".join(leak_format[15:47])+'\n').encode('ascii'))
 memory_file.write(("".join(leak_format[47:])+'\n').encode('ascii'))
 garbage(memory_file, 119)
 garbage(memory_file, 369)
+garbagee_key)
+leak_format = [leak[k:k+8] if k%8 == 0 else ':' for k in range(0,len(leak)-4,4)]
+
+garbage(memory_file, 299)
+garbage(memory_file, 32*2+17)
+for k in range(0,len(leak_format),32) :
+    memory_file.write(("".join(leak_format[k:k+32])+'\n').encode('ascii'))
+garbage(memory_file, 119)
+garbage(memory_file, 369)
 garbage(memory_file, 69)
