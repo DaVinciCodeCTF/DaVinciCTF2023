@@ -1,0 +1,20 @@
+---
+const pageTitle = "My blog";
+import Header from "../components/Header.astro";
+import Content from "../components/Content.astro";
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type ="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <br><h1>Contacts</h1>
+    <Header />
+    <Content />
+  </body>
+</html>

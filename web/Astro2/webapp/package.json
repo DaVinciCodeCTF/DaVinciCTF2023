@@ -1,0 +1,19 @@
+{
+  "name": "my-astro-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+      "preview": "deno run --allow-ffi --unstable --allow-env --allow-net=0.0.0.0:8086 --allow-read=/app/astro_web_chall/dist/client ./dist/server/entry.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/deno": "^1.2.0",
+    "astro": "^1.6.2"
+  }
+}
