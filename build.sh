@@ -1,0 +1,1 @@
+docker build -t astro2 ./web/Astro2/webapp
