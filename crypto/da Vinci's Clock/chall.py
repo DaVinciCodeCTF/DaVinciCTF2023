@@ -17,14 +17,14 @@ def point_inverse(P: tuple):
         return P
     return Point(P.x, -P.y % p)
 
-def point_addition(P: tuple, Q: tuple): # approx. time around 30µs when entering else's segment
+def point_addition(P: tuple, Q: tuple):
     if P == O:
         return Q
     elif Q == O:
         return P
     elif Q == point_inverse(P):
         return O
-    else:
+    else:  # approx. time around 30µs when entering else's segment
         if P == Q:
             aux = ((3*P.x**2 + a) * inverse(2*P.y, p))%p
         else:
@@ -66,7 +66,7 @@ print(my_public_key)
 # Our shared private key:
 begin = time()
 shared_secret_key = double_and_add(leonard_public_point, my_private_key).x
-for k in range(999999) : # I want to be precise on the computing time
+for k in range(999999) : # I want to be precise on the computing time, i've even gave you the time it takes to run the function above!
     double_and_add(leonard_public_point, my_private_key)
 computing_time = (time() - begin)
 print("You can be proud I can compute my message in less than {}ms".format(computing_time))

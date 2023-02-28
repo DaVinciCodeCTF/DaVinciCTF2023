@@ -80,7 +80,7 @@ Looking at the double_and_add function:
     So the time needed by the double_and_add(P,n) function can be written as:
         T = 30 * (n.bit_length() + n.bit_count() - 1) + 0.05*O(1)
         T = 30 * (n.bit_length() + n.bit_count() - 1)
-    We'll call (n.bit_length() + n.bit_count() - 1) the number of operations.
+    We'll call (n.bit_length() + n.bit_count() - 1) the number of operations, which is ~round(T/30):
 """
 n_operations = round(computing_time/30)
 
