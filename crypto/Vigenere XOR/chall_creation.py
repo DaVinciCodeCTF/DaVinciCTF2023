@@ -1,5 +1,5 @@
 
-FLAG = "dvCTF{80R3D_K3Y_15_K3Y_MY_FR13ND}"
+FLAG = "You did it! The flag is dvCTF{80R3D_K3Y_15_K3Y_MY_FR13ND}. Well done !"
 KEY = "CR9PT0"
 message = ""
 for k in range(len(FLAG)) :

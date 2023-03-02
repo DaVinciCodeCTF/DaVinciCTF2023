@@ -14,7 +14,7 @@ Would you be able to recover the message he sent you ?
 Please, refer to the writeup python file for the solution.  
 Some explanations are directly available inside the code.  
 
-> Vulnerability: A ^ B = 0 => A := B and apply on the rest of the message as you would do with a Vigenere cipher key.  
+> Bruteforcing the message for key of length 4, 5 and 6, knowing "dvCTF{" is in the message.  
   
 **Additional information:**  
 
