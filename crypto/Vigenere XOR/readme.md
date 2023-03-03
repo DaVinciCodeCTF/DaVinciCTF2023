@@ -1,7 +1,7 @@
 ### Vigenere XOR
 **Category:** crypto  
 (**Subcategory:** XOR)  
-**Difficulty:** Easy 
+**Difficulty:** Easy  
   
 **Description:**  
 Leonard forgot to tell you the key he used to encrypt his message.  
