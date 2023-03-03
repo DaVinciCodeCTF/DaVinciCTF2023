@@ -1,6 +1,6 @@
 ### Vigenere XOR
 **Category:** crypto  
-**Subcategory:** XOR  
+(**Subcategory:** XOR)  
 **Difficulty:** Easy 
   
 **Description:**  
@@ -8,7 +8,7 @@ Leonard forgot to tell you the key he used to encrypt his message.
 Would you be able to recover the message he sent you ?  
 
 > Files: message  
-> Flag format: dvCTF{[REDACTED]}  
+> Flag format: dvCTF{[REDACTED]} found in the message  
 
 **Solution:**  
 Please, refer to the writeup python file for the solution.  
