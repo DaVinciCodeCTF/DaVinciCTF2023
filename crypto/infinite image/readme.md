@@ -1,6 +1,6 @@
 ### radioactive RSA
 **Category:** crypto  
-**Subcategory:** Maths  
+(**Subcategory:** Maths)  
 **Difficulty:** Easy  
   
 **Description:**  
