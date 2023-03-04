@@ -1,0 +1,64 @@
+version: '3.9'
+services:
+
+ # Nginx server
+ nginx:
+
+   # Build context
+   build: ./proxy
+
+   # Mapping machine and container ports
+   ports:
+     - 1337:80
+
+   # Storage volumes
+   volumes:
+     - static_volume:/home/app/interpretor/static
+
+   depends_on:
+     - web
+
+   restart: "on-failure"
+
+   networks:
+     - everywhere
+
+ # Django application
+ web:
+
+   # Build context
+   build: ./webapp
+
+   # Build commands
+   command: sh -c "python manage.py makemigrations &&
+                   python manage.py migrate &&
+                   gunicorn python_is_everywhere.wsgi:application --bind 0.0.0.0:8000"
+
+   # Storage volumes
+   volumes:
+     - static_volume:/home/app/interpretor/static
+
+   expose:
+   - 8000
+
+   restart: "on-failure"
+
+   networks:
+     - everywhere
+
+ bot:
+   build: ./bot
+
+   restart: "on-failure"
+
+   depends_on:
+     - nginx
+
+   networks:
+     - everywhere
+
+volumes:
+ static_volume:
+
+networks:
+ everywhere:

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'interpretor/css/style.css' %}">
+  </head>
+  <body>
+    <div class="signup-form">
+        <h1>Register</h1>
+        <form method="post" action="{% url 'register' %}">
+          {% csrf_token %} {% for field in form %}
+          <div>
+            {{ field.label_tag }}
+            <input
+              type="{% if 'password' in field.label_tag %}password{% else %}text{% endif %}"
+              name="{{ field.html_name }}"
+              maxlength="{% if 'username' in field.label_tag %}150{% endif %}"
+              id="{{ field.id_for_label }}"
+              required
+            />
+          </div>
+          {% if field.errors %} {% for error in field.errors %}
+          <p>
+            {{ error|escape }}
+          </p>
+          {% endfor %} {% endif %} {% endfor %}
+          <button type="submit">Register</button>
+        <a href="{% url 'login' %}">Already have a account ?</a>
+        </form>
+    </div>
+  </body>
+</html>
+
