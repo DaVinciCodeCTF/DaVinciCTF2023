@@ -1,6 +1,9 @@
 from Crypto.Util.number import getStrongPrime, inverse, GCD, bytes_to_long
+from Crypto.Util.Padding import pad
+from Crypto.Cipher import AES
 import random
 import hashlib
+import os
 
 FLAG = b"[REDACTED]"
 
@@ -20,8 +23,9 @@ print(N)
 print(e)
 print(ct)
 
-d2 = bin(d ^ int(bin(d)[2:][::-1],2))[2:].zfill(4096)
-d2_blocs = [d2[k*4096//8:(k+1)*4096//8] for k in range(8)]
+d2 = bin(d)[2:][::-1]
+d2 = bin(int(d2,2) ^ d)[-1600:]
+d2_blocs = [d2[k*1600//8:(k+1)*1600//8] for k in range(8)]
 d2_mixed_up = [None] * 8
 mix_order = ""
 while None in d2_mixed_up :
@@ -31,8 +35,15 @@ while None in d2_mixed_up :
     if not d2_mixed_up[r] :
         d2_mixed_up[r] = d2_blocs.pop()
     mix_order += '-'+str(r) if mix_order else str(r)
+d2_mixed_up = "".join(d2_mixed_up)
+
+derived_aes_key = hashlib.sha256(mix_order.encode('ascii')).digest()
+iv = os.urandom(16)
+cipher = AES.new(derived_aes_key, AES.MODE_CBC, iv)
+d2_mixed_up_encrypted = cipher.encrypt(pad(int(d2_mixed_up,2).to_bytes((len(d2_mixed_up)+7)//8,'big'),16,'pkcs7'))
+
 mix_protection_hash = hashlib.md5()
 mix_protection_hash.update(mix_order.encode('ascii'))
 
-print("".join(d2_mixed_up))
+print("{}:{}".format(iv.hex(), d2_mixed_up_encrypted.hex()))
 print("{}:{}".format(len(mix_order)//2+1, mix_protection_hash.hexdigest()))

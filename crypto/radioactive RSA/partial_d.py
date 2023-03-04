@@ -50,7 +50,7 @@ def coppersmith(p, n, N):
     #x = var('x')
     #Ring = PolynomialRing(Zmod(N), 'x', implementation='NTL')
     f = Ring(a*p + x)
-    roots = f.small_roots(X=2**(2048 - n), beta=0.2)
+    roots = f.small_roots(X=2**(2048 - n), beta=0.5)
 
     for r in roots:
         kq = r + p * a
