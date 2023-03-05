@@ -16,7 +16,7 @@ type Aes128Cbc = Cbc<Aes128, Pkcs7>;
 
 fn main() {
 
-    let path: String = String::from("path_to_png");
+    let path: String = String::from("./output.png");
     decode_qr_code(path);
 }
 
