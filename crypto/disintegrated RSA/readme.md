@@ -5,11 +5,12 @@
   
 **Description:**  
 Leonard is starting to fell his age and his sight hasn't been improving lately...  
-He gave me a part of his private key to decipher a message he received but he must have written a couple of bits wrongely.  
+He gave me a part of his private key to decipher a message he received but he must have written 2 bits wrongely.  
 Would you be able to recover the private key for me and decipher his message please ?  
 
 > Files: my_paper  
-> Flag format: dvCTF{FLAG}  
+> Flag format: ASCII chars
+> Don't forget to add the dvCTF{} wrapper to your flag!  
 
 **Solution:**  
 Please, refer to the writeup python file for the solution.  
