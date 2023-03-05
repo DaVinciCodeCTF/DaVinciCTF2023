@@ -32,7 +32,4 @@ RUN python3 -m pip install --upgrade pip
 
 RUN python3 -m pip install -r requirements.txt
 
-ARG host
-ENV HOST=$host
-
 CMD ["python3", "-u", "./bot.py"]

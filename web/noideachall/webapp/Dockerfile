@@ -4,7 +4,7 @@ RUN apk update && apk upgrade
 RUN apk add python3
 RUN python3 -m ensurepip --default-pip
 
-WORKDIR .
+WORKDIR /home/app/
 
 COPY . .
 
