@@ -8,5 +8,5 @@
 > 
 > Note : The flag is stored in a file on the server.
 > 
-> URL : `http://<host>:8088`
+> URL : `http://<host>:1337`
 >
