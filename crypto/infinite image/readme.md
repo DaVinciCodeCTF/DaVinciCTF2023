@@ -1,7 +1,7 @@
-### radioactive RSA
+### Infinite Image
 **Category:** crypto  
 (**Subcategory:** Maths)  
-**Difficulty:** Easy  
+**Difficulty:** Medium  
   
 **Description:**  
 Leonard is using a singular LSB algorithm to send a message to his club and you.  
