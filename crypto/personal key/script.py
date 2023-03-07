@@ -63,20 +63,21 @@ def chall_initialization() :
     cipher = AES.new(derived_aes_key, AES.MODE_CBC, bytes.fromhex(iv))
     message = cipher.encrypt(pad(FLAG,16,'pkcs7')).hex()
     
-    sent_by_Leonard = {'A':A, 'g':g, 'p':p}
-    sent_by_his_friend = {'B':B, 'iv':iv, 'message':message}
+    sent_by_Leonard = {"A":A, "g":g, "p":p}
+    sent_by_his_friend = {"B":B, "iv":iv, "message":message}
     
     print(DVC_banner)
     print("From Leonard:\n{}\n".format(sent_by_Leonard))
     print("From his friend:\n{}\n".format(sent_by_his_friend))
 
 def format(user_input : str) -> tuple[int,int,int]:
-    usage = 'Usage: send the following dictionnary in json format: {"A": <integer>, "g": <integer>, "p": <integer>}'
+    usage = 'The accepted format is a dictionnary in json format: {"A": <integer>, "g": <integer>, "p": <integer>}'
+
     try :
-        json_load = json.loads(usage)
+        json_load = json.loads(user_input)
         return json_load['A'],json_load['g'],json_load['p']
-    except :
-        return "Bad json formatting.\n"+usage
+    except Exception:
+        return f"Bad json formatting.\n"+usage
 
 def check_and_return(A_user : int, g_user : int, p_user : int) :
     if g_user != g :
@@ -103,6 +104,7 @@ def chall() :
 def main() :
     create_chall()
     chall_initialization()
+    print('You can now speak with Leonard\'s friend: the accepted format is a dictionnary in json format: {"A": <integer>, "g": <integer>, "p": <integer>}')
     chall()
 
 if __name__ == '__main__':

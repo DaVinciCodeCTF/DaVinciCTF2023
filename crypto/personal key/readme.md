@@ -4,8 +4,8 @@
 **Difficulty:** Easy  
   
 **Description:**  
-Our technical team has been able to eavesdrop a conversation between Leonard and his friend, and make it possible to send a message to his friend after the exchange.  
-Moreover, we know from a reliable source that his friend tends to keep the same private key for every new conversation.  
+Our technical team has been able to eavesdrop and recover a conversation between Leonard and his friend as well as the decryption algorithm they use.  They even made it possible to send messages to his friend after the exchange.  
+Moreover, we know from a reliable source that his friend tends to keep the same private key.  
 Would you be able to recover the message he sent to Leonard previously ?  
 
 > Files: decrypt.py  

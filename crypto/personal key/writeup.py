@@ -3,6 +3,8 @@ from functools import reduce
 import random
 import math
 
+# Was lazy, didn't automate it in pwntools
+
 primes = []
 def sieve(maximum=10000):
     marked = [False]*(int(maximum/2)+1)
@@ -31,7 +33,7 @@ assert p_smooth.bit_length() == 1493
 """
 You receive first the variables A,B,g,p,iv and message sent during their exchange.
 
-You send: {'g': 2, 'A': <the A given by Leonard>, 'p': p_smooth}
+You send: {"g": 2, "A": <the A given by Leonard>, "p": p_smooth}
 You receive a second B calculated with this modulus.
 
 To retrieve the private key of Leonard's friend (privkey):
