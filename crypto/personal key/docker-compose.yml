@@ -1,0 +1,7 @@
+version: "3" 
+services: 
+   personal-key: 
+     build: . 
+     ports: 
+       - "2000:2000" 
+     restart: always
