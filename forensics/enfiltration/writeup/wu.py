@@ -21,7 +21,7 @@ if __name__ == "__main__":
     enf_data = [
         element[0]
         for element in process(
-            "..\\chall.wav"
+            "..\\chall.mp3"
         )
         if element[0] != 0.0
     ]
