@@ -46,7 +46,7 @@ services:
    networks:
      - everywhere
 
- bot:
+ bot1:
    build: ./bot
 
    restart: "on-failure"
@@ -56,7 +56,27 @@ services:
 
    networks:
      - everywhere
+ bot2:
+   build: ./bot
 
+   restart: "on-failure"
+
+   depends_on:
+     - nginx
+
+   networks:
+     - everywhere
+ bot3:
+   build: ./bot
+
+   restart: "on-failure"
+
+   depends_on:
+     - nginx
+
+   networks:
+     - everywhere
+     
 volumes:
  static_volume:
 
