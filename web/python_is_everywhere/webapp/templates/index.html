@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'interpretor/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'interpretor/css/pyscript.css' %}">
+    <script src="{% static 'interpretor/js/script.js' %}"></script>
+    <script defer src="{% static 'interpretor/js/pyscript.js' %}"></script>
+    <script src="{% static 'interpretor/js/tinymce.js' %}" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+  </head>
+
+  <body>
+  <a class="buttons" href="{% url 'logout' %}">Logout</a>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+  <div class="interpretor">
+    <section class="pyscript">
+        <h2 class="font-semibold text-2xl ml-5">{{ title }}</h2>
+        <p>Press "shift + enter" or click on the run button to run python</p>
+        <div>
+            <py-repl id="my-repl"> </py-repl>
+            <div id="output" class="p-4"></div>
+        </div>
+    </section>
+    <div class="report">
+        <h3>Report a bug</h3>
+        <form class="report-form" method="post" action="/report/">
+          <textarea name="message" id="mytextarea">Write your message here</textarea>
+          <input name="python" type="hidden" id="python" value="">
+          {% csrf_token %}
+          <button class="report-button" type="submit">Report</button>
+        </form>
+    </div>
+  </div>
+  </body>
+</html>
