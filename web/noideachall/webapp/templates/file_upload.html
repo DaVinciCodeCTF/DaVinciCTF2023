@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload your file</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <h1>You can post your files here</h1>
+    <p>I'm not an idiot I just take txt files. I'm too afraid of getting hacked....</p>
+    {% if error %}
+    <p style="color:#FF0000";>{{ error }}</p>
+    {% endif %}
+
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
+</body>
+</html>
