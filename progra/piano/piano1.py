@@ -1,5 +1,6 @@
 import random
 import time
+from datetime import datetime
 
 # from answer_piano1 import answer
 
@@ -15,12 +16,25 @@ base_kb = """_____________________________
 
 kb_lines = base_kb.split("\n")
 
-notes = ["DOf", "DO#", "REf", "RE#", "MIf", "FAf", "FA#", "SOLf", "SOL#", "LAf", "LA#", "SIf"]
+notes = [
+    "DOf",
+    "DO#",
+    "REf",
+    "RE#",
+    "MIf",
+    "FAf",
+    "FA#",
+    "SOLf",
+    "SOL#",
+    "LAf",
+    "LA#",
+    "SIf",
+]
 
 fr_to_eng = {
     "DO": "C",
     "RE": "D",
-    "MI": "E", 
+    "MI": "E",
     "FA": "F",
     "SOL": "G",
     "LA": "A",
@@ -32,15 +46,15 @@ fr_to_eng = {
     "LA#": "A#",
 }
 
-def clear_keyboard(kb):
 
+def clear_keyboard(kb):
     clear_kb = kb
 
-    s_notes = [x for x in notes if '#' in x]
+    s_notes = [x for x in notes if "#" in x]
     f_notes = [x for x in notes if x not in s_notes]
 
     for i in s_notes + f_notes:
-        if not '#' in i:
+        if not "#" in i:
             clear_kb = clear_kb.replace(i, "   ")
         else:
             clear_kb = clear_kb.replace(i, " ")
@@ -49,34 +63,38 @@ def clear_keyboard(kb):
 
     return clear_kb
 
-def gen_kb(length):
 
+def gen_kb(length):
     kb = []
 
     for line in kb_lines:
-        kb.append((line*length).replace("||", "|"))
+        kb.append((line * length).replace("||", "|"))
 
     if length > 1:
-
-        kb[0] = kb[0][:-(length-1)]
+        kb[0] = kb[0][: -(length - 1)]
 
     return "\n".join(kb)
+
 
 def r_replace(s, old, new, occ):
     li = s.rsplit(old, occ)
     return new.join(li)
 
+
 def get_suffix(nb_kb):
-    
-    if nb_kb == 1: return "st"
-    if nb_kb == 2: return "nd"
-    if nb_kb == 3: return "rd"
-    if nb_kb == 4: return "th"
+    if nb_kb == 1:
+        return "st"
+    if nb_kb == 2:
+        return "nd"
+    if nb_kb == 3:
+        return "rd"
+    if nb_kb == 4:
+        return "th"
+
 
 notes_cache = []
 
 for i in range(len(notes)):
-
     print(f"n° {i+1}")
 
     left_notes = [x for x in notes if x not in notes_cache]
@@ -91,23 +109,35 @@ for i in range(len(notes)):
 
     nb_kb = random.randint(1, 4)
 
-    print(f"Give me the {nb_kb}{get_suffix(nb_kb)} {fr_to_eng[note.replace('f', '')]} plz")
+    print(
+        f"Give me the {nb_kb}{get_suffix(nb_kb)} {fr_to_eng[note.replace('f', '')]} plz"
+    )
 
     asked_kb = gen_kb(nb_kb)
 
-    if not "#" in note: asked_kb = r_replace(asked_kb, note, " X ", 1)
-    else: asked_kb = r_replace(asked_kb, note, "X", 1)
+    if not "#" in note:
+        asked_kb = r_replace(asked_kb, note, " X ", 1)
+    else:
+        asked_kb = r_replace(asked_kb, note, "X", 1)
 
     asked_kb = clear_keyboard(asked_kb)
 
     ans = ""
 
-    for i in range(8):
+    c_time = datetime.now()
 
+    for i in range(8):
         ans += input() + "\n"
+
+    delta = datetime.now() - c_time
+
+    if delta.seconds > 1:
+        print("too slow o/")
+        exit()
 
     if ans != asked_kb:
         print("????? wtf thats not what i asked")
         exit()
+
 
 print("Noice, here is your flag : dvCTF{4r3_Y0U_7H3_N3X7_M0Z4r7?}")
