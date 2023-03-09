@@ -1,0 +1,39 @@
+﻿Created By AccessData® FTK® Imager 4.5.0.3 
+
+Case Information: 
+Acquired using: ADI4.5.0.3
+Case Number:  
+Evidence Number:  
+Unique Description: 
+Examiner:  
+Notes:  
+
+--------------------------------------------------------------
+
+Information for Z:\DiskImage:
+
+Physical Evidentiary Item (Source) Information:
+[Device Info]
+ Source Type: Logical
+[Drive Geometry]
+ Bytes per Sector: 512
+ Sector Count: 2 045 952
+[Physical Drive Information]
+ Removable drive: False
+ Source data size: 999 MB
+ Sector count:    2045952
+[Computed Hashes]
+ MD5 checksum:    efce1a696c493c455de549ee80d19cdf
+ SHA1 checksum:   ae1cb86ee9783b8ada2df00afc08a8323d213a18
+
+Image Information:
+ Acquisition started:   Thu Mar  9 15:14:12 2023
+ Acquisition finished:  Thu Mar  9 15:14:32 2023
+ Segment list:
+  Z:\DiskImage.E01
+
+Image Verification Results:
+ Verification started:  Thu Mar  9 15:14:32 2023
+ Verification finished: Thu Mar  9 15:14:41 2023
+ MD5 checksum:    efce1a696c493c455de549ee80d19cdf : verified
+ SHA1 checksum:   ae1cb86ee9783b8ada2df00afc08a8323d213a18 : verified
