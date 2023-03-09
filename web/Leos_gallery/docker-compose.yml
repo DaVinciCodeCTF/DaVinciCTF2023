@@ -1,0 +1,27 @@
+version: '3'
+name: leo-gallery
+services:
+  web:
+    build: .
+    ports:
+      - "11337:80"
+    environment:
+      - DATABASE_URL=mysql://davincicode:ao67AGmZUPxaiR@db:13306/dvc_db
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=davincicode
+      - MYSQL_PASSWORD=ao67AGmZUPxaiR
+      - MYSQL_DATABASE=dvc_db
+      - MYSQL_ROOT_PASSWORD=79TF2oRgMdE4HSUXH9av
+    volumes:
+      - ./app/init/:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "13306:3306"
+    restart: always
+volumes:
+  mysql_data:
