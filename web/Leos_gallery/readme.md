@@ -11,4 +11,5 @@
 > URL : `http://<host>:11337/`
 >
 > Flag : `dvCTF{h4sh_l3ngth_3xt3ns1on_1s_funny}`
-
+>
+> Installation : `sh run.sh`
