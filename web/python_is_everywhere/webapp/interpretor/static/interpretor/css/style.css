@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #80867c;
+  color: #c8c8c8;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.report-button,
+.login-button,
+.signup-button {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 10px;
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #333333;
+}
+
+.login-button:active,
+.signup-button:active {
+  transform: translateY(2px);
+}
+
+h1 {
+  text-align: center;
+  font-size: 48px;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
+}
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label,
+input[type="text"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="password"] {
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #3a6e27;
+  color: #c8c8c8;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #333333;
+}
+
+.interpretor {
+  display: flex;
+  height: 75%;
+}
+
+.report {
+  width: 40%;
+  padding: 2%;
+}
+
+.pyscript {
+  width: 50%;
+  margin: 3%;
+}
+
+.report-form {
+  height: 75%;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
