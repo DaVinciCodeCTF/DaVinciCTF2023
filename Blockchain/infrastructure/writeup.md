@@ -28,7 +28,6 @@ contract Attack {
     Challenge1 public victim;
     mapping(address => uint256) balances;
 
-
     constructor(address _victimAddress)payable {
         victim = Challenge1(_victimAddress);
     }
@@ -40,7 +39,6 @@ contract Attack {
     function deposit() external payable {
         balances[msg.sender] += msg.value;
     }
-
 
 }
 `
