@@ -123,11 +123,19 @@ for i in range(len(notes)):
     asked_kb = clear_keyboard(asked_kb)
 
     ans = ""
+    
+    c_time = datetime.now()
 
     c_time = datetime.now()
 
     for i in range(8):
         ans += input() + "\n"
+        
+    delta = datetime.now() - c_time
+
+    if delta.seconds > 1:
+        print("too slow o/")
+        exit()
 
     delta = datetime.now() - c_time
 
