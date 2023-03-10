@@ -1,21 +1,21 @@
-## WriteUp
+# WriteUp
 
 The challenge1.sol smart contract is vulnerable. The constructor was not set well. Instead of constructor, it is a callable function.
 
 There is two step :
 
-# Step 1 : 
+## Step 1 : 
 
 Call the function initWallet() to gain the owner rights.
 
-# Step 2 : 
+## Step 2 : 
 
 Call the function migrateTo("youraddress") to steal his money.
 
 
 
 
-# AttackContract
+## AttackContract
 
 With the blockchain running, it can be solve with this smart contract 
 
