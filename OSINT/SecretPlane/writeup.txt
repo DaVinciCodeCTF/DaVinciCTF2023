@@ -1,0 +1,14 @@
+-Chercher le nom d'utilisateur sur insta
+
+- voir qu'il y a une photo de poster, google lens dessus : on voit que c'est terminal 3 de l'aéroport de singapour 
+
+- aller sur la photo en description, la télécharger, voir les dans les metadatas les coordonnées GPS, la date, l'heure et l'altitude pour déterminer le trajet de l'avion, télécharger Flightradar24 sur mobile (pour avoir la fonction playback) et ainsi déterminer le numéro de vol et l'immatriculation de l'appareil.
+
+-retrouver la plaque d'immatriculation de l'appareil et le numéro de vol en notation ICAO
+
+
+flag format : immat_numVol
+ex : 5Y-KZG_KQA115
+
+flag : 9V-SMI_SIA321
+
