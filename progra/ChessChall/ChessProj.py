@@ -93,7 +93,7 @@ for i in range(3):
             
 if win == 3 and (datetime.now()-dt) <= timedelta(minutes = 1) :
     print(f"you did it in {datetime.now()-dt} ! Congrats, here is your flag : ")
-    print("DVCTF{Br4v0K4sP4r0V}")
+    print("dvCTF{Br4v0K4sP4r0V}")
 else:
     print("Sorry, you took too much time my student.")
     exit()
