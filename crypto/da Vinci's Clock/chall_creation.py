@@ -90,7 +90,7 @@ derived_aes_key = sha256(str(shared_secret_key).encode('ascii')).digest()
 iv = os.urandom(16)
 ciphertext = AES.new(derived_aes_key, AES.MODE_CBC, iv).encrypt(pad(FLAG,16,'pkcs7'))
 
-cipher.writelines([str(my_public_key.x)+'\n', "You can be proud I can compute my message in less than {}ms".format(computing_time)+'\n', iv.hex()+'\n', ciphertext.hex()])
+cipher.writelines([str(my_public_key.x)+'\n', "You can be proud I can compute my message in less than {}µs".format(computing_time)+'\n', iv.hex()+'\n', ciphertext.hex()])
 
 def garbage(file, n) :
     alphabet = list(string.printable)[:-6]
