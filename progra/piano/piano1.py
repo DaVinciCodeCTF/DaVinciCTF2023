@@ -1,5 +1,6 @@
 import random
 import time
+from datetime import datetime
 
 # from answer_piano1 import answer
 
@@ -101,10 +102,18 @@ for i in range(len(notes)):
     asked_kb = clear_keyboard(asked_kb)
 
     ans = ""
+    
+    c_time = datetime.now()
 
     for i in range(8):
 
         ans += input() + "\n"
+        
+    delta = datetime.now() - c_time
+
+    if delta.seconds > 1:
+        print("too slow o/")
+        exit()
 
     if ans != asked_kb:
         print("????? wtf thats not what i asked")
