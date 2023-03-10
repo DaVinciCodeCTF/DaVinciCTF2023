@@ -108,7 +108,7 @@ FAIL:
 
 void print_flag()
 {
-  PRINT("Flag is: dvCTF{w04h_y0u_d3f3473d_my_m3nu}");
+  PRINT("Flag is: dvCTF{}");
 }
 
 int main()
