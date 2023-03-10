@@ -4,7 +4,7 @@
 > 
 > Category : web
 > 
-> Difficulty : easy
+> Difficulty : medium
 > 
 > Description : I love this website ! It allows me to store all my wallpapers online, so cool !
 >

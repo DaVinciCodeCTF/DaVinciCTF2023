@@ -8,7 +8,8 @@
         $sql_req = trim($_POST['images']);
         $values = explode("|",$sql_req);
         if (isset($values[0]) && !strcmp(md5($my_salt.$values[0]),$values[1])) {
-            $conn = connect_to_db();
+            $conn = connect_to_db(true);
+            $conn->exec("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ");
             $stmt = $conn->prepare(base64_decode($values[0]));
             $stmt->execute();
 

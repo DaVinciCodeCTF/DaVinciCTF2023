@@ -1,3 +1,7 @@
+CREATE USER 'query_galleries'@'%' IDENTIFIED BY 'Y3grV4uErvNU#Z3P55Dg';
+
+GRANT SELECT ON dvc_db.* TO 'query_galleries'@'%';
+
 CREATE TABLE userWallpapers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     image_name VARCHAR(255) NOT NULL,
