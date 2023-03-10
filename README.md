@@ -1,1 +1,0 @@
-# DaVinciCTF2023

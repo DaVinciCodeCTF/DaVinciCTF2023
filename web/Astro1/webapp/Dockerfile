@@ -11,6 +11,8 @@ WORKDIR ./astro_web_chall/
 RUN npm ci
 RUN npm run build
 
+RUN deno cache ./dist/server/entry.mjs
+
 EXPOSE 8085
 
 CMD npm run preview
