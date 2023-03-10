@@ -55,10 +55,10 @@ n = 0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551
 # Data from intercepted_message
 intercepted_message = open("intercepted_message", 'r').readlines()
 pub_key = int(intercepted_message[0][:-1])
-computing_time = float(intercepted_message[1].split()[-1][:-2])
+computing_time = float(intercepted_message[1].split()[-1][:-8])
 iv = bytes.fromhex(intercepted_message[2][:-1])
 ciphertext = bytes.fromhex(intercepted_message[3])
-
+print(computing_time)
 # Data from the code
 leonard_public_key = 31663442885885219669071274428005652588471134165143253841118506078548146970109
 leonard_public_point = Point(leonard_public_key, tonelli_shanks((leonard_public_key**3 + a*leonard_public_key + b)%p,p)[0])
