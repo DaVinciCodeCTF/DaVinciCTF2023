@@ -4,7 +4,7 @@ import BoardToImage as bti
 import base64
 
 
-stockfish = Stockfish(path="./stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64", depth=5, parameters={"Skill Level" : 2})
+stockfish = Stockfish(path="./stockfish_14_x64", depth=5, parameters={"Skill Level" : 2})
 
 fen_dep = "rnbqkbnr/pppppppp/11111111/11111111/11111111/11111111/PPPPPPPP/RNBQKBNR w KQkq"
 

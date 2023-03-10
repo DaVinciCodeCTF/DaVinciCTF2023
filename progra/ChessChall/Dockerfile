@@ -10,7 +10,7 @@ RUN pip install matplotlib
 COPY . /ChessChall/
 WORKDIR /ChessChall/
 RUN chown -R carlsen:carlsen .
-RUN chmod +x stockfish_15_linux_x64/stockfish_15_linux_x64/stockfish_15_x64
+RUN chmod +x stockfish_14_x64
 
 USER carlsen
 
