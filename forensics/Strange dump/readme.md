@@ -5,7 +5,7 @@
 Found this strange dump, but couldn't extract what's inside of it...
 Could you help me?
 
-> Flag format : dvCTF{md5sum of the "davinci" config file}
+> Flag format : dvCTF{md5sum of the "davinci" config executable}
 
 **Solution:**
 
