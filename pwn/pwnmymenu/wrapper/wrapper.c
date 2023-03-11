@@ -6,15 +6,13 @@
 
 #define PRINT(msg) puts("[+]\t" msg);
 
-void level1(int n)
-{
+void level1(int n){
   int i;
   char cc[0x200];
   char *cc_format = "export PATH; gcc lvl1.c -o /tmp/vuln -no-pie -fno-stack-protector "
-                    "-D BUF_LEN=%d 2>/dev/null";
+      "-D BUF_LEN=%d 2>/dev/null";
 
-  for (i = 0; i < n; i++)
-  {
+  for (i = 0 ; i < n ; i++) {
     snprintf(cc, sizeof(cc), cc_format, rand() % 0x200);
 
     system(cc);
@@ -36,17 +34,15 @@ FAIL:
   exit(0);
 }
 
-void level2(int n)
-{
+void level2(int n){
   int i;
   char cc[0x200];
   char *cc_format = "export PATH; gcc lvl2.c -o /tmp/vuln -no-pie -fno-stack-protector "
-                    "-D BUF_LEN=%d -D MENU=\\'%d\\' -D SUBMENU=\\'%c\\' 2>/dev/null";
+      "-D BUF_LEN=%d -D MENU=\\'%d\\' -D SUBMENU=\\'%c\\' 2>/dev/null";
 
-  for (i = 0; i < n; i++)
-  {
+  for (i = 0 ; i < n ; i++) {
     snprintf(cc, sizeof(cc), cc_format, rand() % 0x200, rand() % 5,
-             (rand() % 5) + 'a');
+            (rand() % 5) + 'a');
 
     system(cc);
 
@@ -67,16 +63,14 @@ FAIL:
   exit(0);
 }
 
-void level3(int n)
-{
+void level3(int n){
   int i;
   uint64_t menu, submenu;
   char cc[0x200];
   char *cc_format = "export PATH; gcc lvl3.c -o /tmp/vuln -no-pie -fno-stack-protector "
-                    "-D BUF_LEN=%d -D MENU=%lld -D SUBMENU=%lld 2>/dev/null";
+      "-D BUF_LEN=%d -D MENU=%lld -D SUBMENU=%lld 2>/dev/null";
 
-  for (i = 0; i < n; i++)
-  {
+  for (i = 0 ; i < n ; i++) {
     menu = rand();
     menu <<= 32;
     menu |= rand();
@@ -106,13 +100,11 @@ FAIL:
   exit(0);
 }
 
-void print_flag()
-{
-  PRINT("Flag is: dvCTF{w04h_y0u_d3f3473d_my_m3nu}");
+void print_flag() {
+  PRINT("Flag is: `dvCTF{w04h_y0u_d3f3473d_my_m3nu}`");
 }
 
-int main()
-{
+int main() {
   int seed;
   int rand_fd = open("/dev/urandom", O_RDONLY);
 
@@ -126,3 +118,4 @@ int main()
 
   print_flag();
 }
+
