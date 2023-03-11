@@ -24,7 +24,7 @@
             to_remove = chall_status.classList[chall_status.classList.length - 1]
             chall_status.classList.remove(to_remove)
             chall_status.classList.add("text-info") 
-            chall_status.textContent = message["output"] + " casino at address : " + message["casino_address"] + "and   " +" proxy at address: " + message["proxy_address"]
+            chall_status.textContent = message["output"] + " casino at address : " + message["casino_address"] + " and   " +" proxy at address: " + message["proxy_address"]
             casino_address = message["casino_address"]
             proxy_address = message["proxy_address"] 
 
@@ -73,7 +73,6 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/faucet" style="color: rgba(224,217,217,0.9);--bs-secondary: #ffffff;--bs-secondary-rgb: 255,255,255;">Faucet</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge1" style="color: rgba(224,217,217,0.9);">Challenge 1</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge2" style="color: rgba(224,217,217,0.9);">Challenge 2</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge3" style="color: rgba(224,217,217,0.9);">Challenge 3</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/help" style="color: rgba(224,217,217,0.9);">Help me</a></li>
                 </ul>
             </div>
@@ -83,13 +82,7 @@
         <div class="container">
             <div class="text-center p-4 p-lg-5">
                 <p class="fw-bold text-primary mb-2" style="color: rgb(255,255,255);">Challenge 2 : Casino Time </p>
-                <h1 class="fw-bold mb-4" style="color: rgb(255,255,255);">Upgradeable Casino</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="deploy_2()">Deploy</button>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div  class="col-md-6" style="text-align: right;margin: 5px 0px 0px 0px;"><input id="address_input" type="text" minlength="42" maxlength="42" pattern="^0x[a-fA-F0-9]{40}$" style="width: 370.8px;" required="" placeholder="0x0000000000000000000000000000000000000000"></div>
-                <div class="col-md-6"><button class="btn btn-primary" type="button" onclick="verify_2()">Verify</button></div>
+                <h1 class="fw-bold mb-4" style="color: rgb(255,255,255);">Upgradeable Casino</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="deploy_2()">Deploy</button><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="verify_2()">Verify</button>
             </div>
         </div>
         <h1 id="challenge2_status" class="fs-5 text-secondary" style="text-align: center;color: rgb(255,255,255);margin: -8px;">⬣ Undeployed<br></h1>
@@ -97,7 +90,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p style="color: rgb(255,255,255);text-align: center;font-weight: bold;">John has just discovered the concept of Upgradeable Smart Contracts and wanted to make use of it with his new Casino DApp. <br><em>Unfortunately, he was not aware of all the issues they could cause if badly implemented. After playing three tokens at the roulette, he lost ownership of the proxy. No one else has played since then.</em><br>Can you regain control of the proxy and upgrade the implementation to the new address: '0x??'?<br></p>
+                <p style="color: rgb(255,255,255);text-align: center;font-weight: bold;">John has just discovered the concept of Upgradeable Smart Contracts and wanted to make use of it with his new Casino DApp. <br><em>Unfortunately, he was not aware of all the issues they could cause if badly implemented. After playing three tokens at the roulette, he lost ownership of the proxy. No one else has played since then.</em><br>Can you regain control of the proxy and upgrade the implementation to the new address: '0xD1fF9D506104c5Bd6688Ca5DFd3068170025eD36'?<br></p>
             </div>
         </div>
     </div>
@@ -140,22 +133,8 @@
 
     function verify_2()
     {
-        let user_address = document.getElementById("address_input").value;
-        console.log(user_address)
-        const regex = /^0x[a-fA-F0-9]{40}$/g;
-        let address_array = regex.exec(user_address);
-        if (address_array == null)
-        {
-            to_remove = feedback.classList[feedback.classList.length - 1]
-            feedback.classList.remove(to_remove)
-            feedback.classList.add("text-danger")
-            feedback.textContent = "Address not matching an ETH Address !"
-            return
-        }
-        address_verification = address_array[0]
-        ConcatenateAddress = address_verification + proxy_address
         console.log('Verifying contract');
-        socket.emit('verify', {data: "challenge2", address: ConcatenateAddress });
+        socket.emit('verify', {data: "challenge2", address: proxy_address });
     }
 
 

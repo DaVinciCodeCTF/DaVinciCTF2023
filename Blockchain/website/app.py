@@ -13,11 +13,11 @@ import re
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-deploy_directory = "/home/dovahshan/DVC_blockchain/deploy"
+deploy_directory = "../deploy"
 
 @app.route('/')
 def home():
-    client = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
+    client = Web3(Web3.HTTPProvider("http://146.59.229.106:7545/"))
     #blocknumber = client.eth.get_block('latest').number
     #Supplies = "{:.2e}".format(client.eth.get_balance(Web3.toChecksumAddress("0x68124ed2a425e9ec16083c8322058dd5a4193466")))
     return render_template('home.html')
@@ -72,7 +72,7 @@ def challenges_deploy(message):
             print(e)
 
         finally:
-            chdir("/home/dovahshan/DVC_blockchain/website/")
+            chdir("../website/")
     elif challenge == "challenge2":
         deploy_script = "deploy2"
         try:
@@ -93,7 +93,7 @@ def challenges_deploy(message):
             print(e)
 
         finally:
-            chdir("/home/dovahshan/DVC_blockchain/website/")
+            chdir("../website/")
         
     else:
 
@@ -108,10 +108,11 @@ def challenges_deploy(message):
 @socketio.on('verify')
 def challenges_verify(message):
     print(message['data'])
+    print(message['address'])
     challenge = message['data']
     challenge_address = message['address'].strip('\n')
     emit(f"{challenge}status" , {"output": "⬣ Verifying", "state" : 4})
-    client = Web3(Web3.HTTPProvider(f'http://127.0.0.1:7545'))
+    client = Web3(Web3.HTTPProvider(f'http://146.59.229.106:7545/'))
     # pooooowned
     if challenge == "challenge1":
         challenge_address = Web3.toChecksumAddress(challenge_address)
@@ -123,21 +124,19 @@ def challenges_verify(message):
         else:
             emit(f"{challenge}status" , {"output": "dvCTF{Wh3r3D1DMyMon3YW3nt}", "state": 5})
     if challenge == "challenge2":
-        verification_address = str(challenge_address[0:42])
-        proxy_address = str(challenge_address[42:])
-        print(proxy_address )
-        print(verification_address)
-        proxy_address = Web3.toChecksumAddress(proxy_address)
-        verification_address = Web3.toChecksumAddress(verification_address)
+        #verification_address = str(challenge_address[0:42])
+        #proxy_address = str(challenge_address[42:])
+        #print(verification_address)
+        proxy_address = Web3.toChecksumAddress(str(challenge_address))
+        #verification_address = Web3.toChecksumAddress(verification_address)
         print("proxy_address", proxy_address)
         client.middleware_onion.inject(geth_poa_middleware, layer=0)
-        proxy_contract = client.eth.contract(address=proxy_address, abi=open('./abis/02.json').read())
+        proxy_contract = client.eth.contract(address=proxy_address, abi=open('abis/02.json').read())
         won = proxy_contract.functions.getOwner().call()
-        if won != verification_address:
+        if won != "0xD1fF9D506104c5Bd6688Ca5DFd3068170025eD36":
             emit(f"{challenge}status" , {"output": f"⬣ FAILED !", "state": 3})
         else:
             emit(f"{challenge}status" , {"output": "dvCTF{Th3C451n0iSB4c7L4dy54ndG3ntl3m3n}", "state": 5})
-
 
 ##
 ##  On faucet

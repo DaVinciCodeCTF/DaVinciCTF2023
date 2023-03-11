@@ -66,7 +66,7 @@ module.exports = {
     // options belaow to some value.
     //
      DVC: {
-     	host: "127.0.0.1",
+     	host: "146.59.229.106",
      	port: 7545,            // Standard Ethereum port (default: none)
      	network_id: "*",       // Any network (default: none)
      },

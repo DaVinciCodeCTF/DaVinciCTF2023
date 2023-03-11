@@ -1,7 +1,7 @@
 const Web3 = require("web3");
 const BN = require("bn.js");
 
-const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545"); // replace with your network URL
+const provider = new Web3.providers.HttpProvider("http://146.59.229.106:7545"); // replace with your network URL
 const web3 = new Web3(provider);
 
 async function sendEther(address) {
