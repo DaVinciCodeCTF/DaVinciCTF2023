@@ -9,5 +9,5 @@ Can you find his flight number and the immatriculation of the plane he took ? I 
 
 
 
-flag format : immat_numVol
-ex : 5Y-KZG_KQA115
+
+flag format : dvCTF{immat_numVol} ex : dvCTF{5Y-KZG_KQA115}
