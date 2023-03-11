@@ -86,7 +86,7 @@ def challenges_deploy(message):
             proxy_info = process[proxy_index:].split()[5]
             print(casino_info)
             print(proxy_info)
-            emit(f"{challenge}status" , {"output": f"⬣ Deployed", "state": 2, "address" : f"{casino_info}" "  and   "f"{proxy_info}"})
+            emit(f"{challenge}status" , {"output": f"⬣ Deployed", "state": 2, "casino_address" : f"{casino_info}", "proxy_address" : f"{proxy_info}"})
 
         except CalledProcessError as e:
             emit(f"{challenge}status" , {"output": "⬣ Error", "state" : 3})
@@ -109,12 +109,12 @@ def challenges_deploy(message):
 def challenges_verify(message):
     print(message['data'])
     challenge = message['data']
-    address = message['address'].strip('\n')
+    challenge_address = message['address'].strip('\n')
     emit(f"{challenge}status" , {"output": "⬣ Verifying", "state" : 4})
     client = Web3(Web3.HTTPProvider(f'http://127.0.0.1:7545'))
-    # reentrancy
+    # pooooowned
     if challenge == "challenge1":
-        challenge_address = Web3.toChecksumAddress(address)
+        challenge_address = Web3.toChecksumAddress(challenge_address)
         print(challenge_address)
         client.middleware_onion.inject(geth_poa_middleware, layer=0)
         balance = client.eth.getBalance(challenge_address)
@@ -122,6 +122,21 @@ def challenges_verify(message):
             emit(f"{challenge}status" , {"output": f"⬣ FAILED !", "state": 3})
         else:
             emit(f"{challenge}status" , {"output": "dvCTF{Wh3r3D1DMyMon3YW3nt}", "state": 5})
+    if challenge == "challenge2":
+        verification_address = str(challenge_address[0:42])
+        proxy_address = str(challenge_address[42:])
+        print(proxy_address )
+        print(verification_address)
+        proxy_address = Web3.toChecksumAddress(proxy_address)
+        verification_address = Web3.toChecksumAddress(verification_address)
+        print("proxy_address", proxy_address)
+        client.middleware_onion.inject(geth_poa_middleware, layer=0)
+        proxy_contract = client.eth.contract(address=proxy_address, abi=open('./abis/02.json').read())
+        won = proxy_contract.functions.getOwner().call()
+        if won != verification_address:
+            emit(f"{challenge}status" , {"output": f"⬣ FAILED !", "state": 3})
+        else:
+            emit(f"{challenge}status" , {"output": "dvCTF{Th3C451n0iSB4c7L4dy54ndG3ntl3m3n}", "state": 5})
 
 
 ##

@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script src="//cdn.socket.io/4.4.1/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+
+    let challenge_address;
+
+    socket.on("challenge1status", function(message)
+    {
+        let chall_status = document.getElementById("challenge1_status");
+        // Deploying
+        if (message["state"] == 1)
+        {
+            to_remove = chall_status.classList[chall_status.classList.length - 1]
+            chall_status.classList.remove(to_remove)
+            chall_status.classList.add("text-primary") 
+            chall_status.textContent = message["output"]
+        }
+        // Deployed
+        else if (message["state"] == 2)
+        {
+            to_remove = chall_status.classList[chall_status.classList.length - 1]
+            chall_status.classList.remove(to_remove)
+            chall_status.classList.add("text-info") 
+            chall_status.textContent = message["output"] + " at address " + message["address"]
+            challenge_address = message["address"]
+        }
+        // Error
+        else if (message["state"] == 3)
+        {
+            to_remove = chall_status.classList[chall_status.classList.length - 1]
+            chall_status.classList.remove(to_remove)
+            chall_status.classList.add("text-danger")
+            chall_status.textContent = message["output"]
+        }
+        // Verifying
+        else if (message["state"] == 4)
+        {
+            to_remove = chall_status.classList[chall_status.classList.length - 1]
+            chall_status.classList.remove(to_remove)
+            chall_status.classList.add("text-info")
+            chall_status.textContent = message["output"]
+        }
+        // Success
+        else if (message["state"] == 5)
+        {
+            to_remove = chall_status.classList[chall_status.classList.length - 1]
+            chall_status.classList.remove(to_remove)
+            chall_status.classList.add("text-success")
+            chall_status.textContent = message["output"]
+        }
+    });
+
+</script>    
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Help</title>
+    <title>Challenge 1</title>
 </head>
 
 <body style="background: rgb(48, 48, 48);">
@@ -18,23 +72,31 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge2" style="color: rgba(224,217,217,0.9);">Challenge 2</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge3" style="color: rgba(224,217,217,0.9);">Challenge 3</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/help" style="color: rgba(224,217,217,0.9);">Help me</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/visu" style="color: rgba(224,217,217,0.9);">Visualize chain</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container py-4 py-xl-5">
-        <h1 class="text-center" style="color: rgb(255,255,255);">DVChain<br><br></h1>
-        <p style="color: rgb(255,255,255);font-weight: bold;text-align: left;">Welcome to the DVChain.</a></p>
-        <p style="color: rgb(255,255,255);font-weight: bold;text-align: left;"></p>
-        <p style="color: rgb(255,255,255);">If you need some help, you can go to <a class="nav-link" data-bss-hover-animate="pulse" href="/help" style="color: rgba(224,217,217,0.9);">Help me</a><br><strong><span style="text-decoration: underline;">DO NOT COMMUNICATE ANY OF&nbsp;YOUR PRIVATE KEYS TO ANYONE.</span></strong><br><strong><span style="text-decoration: underline;">DO NOT EVER SEND ANY FUND TO A DVCHHAIN ADDRESS : IT WILL BE YOUR LOSS</span></strong><br><br></p>
-        <p style="color: rgb(255,255,255);">There are 2 independent challenges</p>
-        <p style="color: rgb(255,255,255);"><strong>Get money</strong><br></p>
-        <p style="color: rgb(255,255,255);">Go into the faucet section of this website and enter your address.&nbsp;<br>The faucet will give you 5 ETH if your balance is less than 1 ETH.<br></p>
-        <p style="color: rgb(255,255,255);">The smart contracts for these challenges are written in Solidity. You can find more info here : <a class="link-light" href="https://docs.soliditylang.org/en/v0.8.14/">https://docs.soliditylang.org/en/v0.8.14/</a></p>
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="text-center p-4 p-lg-5">
+                <p class="fw-bold text-primary mb-2" style="color: rgb(255,255,255);">Challenge 1 : You can do it  </p>
+                <h1 class="fw-bold mb-4" style="color: rgb(255,255,255);">Owner powned</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="deploy_1()">Deploy</button><button class="btn btn-light fs-5 py-2 px-4" type="button" onclick="verify_1()">Verify</button>
+            </div>
+        </div>
+        <h1 id="challenge1_status" class="fs-5 text-secondary" style="text-align: center;color: rgb(255,255,255);margin: -8px;">⬣ Undeployed<br></h1>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: rgb(255,255,255);text-align: center;font-weight: bold;">"No one can own my wallet !!!!" He said. Or does someone can ? Try to steal is money<br><em></em><br></p>
+            </div>
+        </div>
     </div>
+    <section class="py-4 py-xl-5" style="text-align: center" >
+        <iframe title="source" srcdoc="{{ challenge }}" width="1000" height="800"></iframe> 
+    </section>
     <footer class="text-center bg-dark" style="background: var(--bs-red);">
-        <div class="container text-white py-4 py-lg-5"> 
+        <div class="container text-white py-4 py-lg-5">
             <ul class="list-inline">
                 <li class="list-inline-item me-4"><a class="link-light" href="https://dvc.tf/">DVCTF</a></li>
             </ul>
@@ -52,8 +114,23 @@
             <p class="text-muted mb-0">Made through nights by Leshen</p>
         </div>
     </footer>
-    <script src="help_assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="help_assets/js/script.min.js"></script>
 </body>
 
 </html>
+
+<script>
+
+    function deploy_1()
+    {
+        console.log('Trying to deploy challenge 1...');
+        socket.emit('deploy', {data: "challenge1"});
+    }
+
+    function verify_1()
+    {
+        console.log('Verifying contract');
+        socket.emit('verify', {data: "challenge1", address: challenge_address});
+    }
+
+
+</script>

@@ -24,9 +24,9 @@
             to_remove = chall_status.classList[chall_status.classList.length - 1]
             chall_status.classList.remove(to_remove)
             chall_status.classList.add("text-info") 
-            chall_status.textContent = message["output"] + " at address (casino & proxy) :" + message["address"]
-            casino_address = message["casino address"]
-            proxy_address = message["proxy address"]
+            chall_status.textContent = message["output"] + " casino at address : " + message["casino_address"] + "and   " +" proxy at address: " + message["proxy_address"]
+            casino_address = message["casino_address"]
+            proxy_address = message["proxy_address"] 
 
 
         }
@@ -61,7 +61,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Challenge 1</title>
+    <title>Challenge 2</title>
 </head>
 
 <body style="background: rgb(48, 48, 48);">
@@ -75,7 +75,6 @@
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge2" style="color: rgba(224,217,217,0.9);">Challenge 2</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/challenge3" style="color: rgba(224,217,217,0.9);">Challenge 3</a></li>
                     <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/help" style="color: rgba(224,217,217,0.9);">Help me</a></li>
-                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="/visu" style="color: rgba(224,217,217,0.9);">Visualize chain</a></li>
                 </ul>
             </div>
         </div>
@@ -84,7 +83,13 @@
         <div class="container">
             <div class="text-center p-4 p-lg-5">
                 <p class="fw-bold text-primary mb-2" style="color: rgb(255,255,255);">Challenge 2 : Casino Time </p>
-                <h1 class="fw-bold mb-4" style="color: rgb(255,255,255);">Upgradeable Casino</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="deploy_2()">Deploy</button><button class="btn btn-light fs-5 py-2 px-4" type="button" onclick="verify_2()">Verify</button>
+                <h1 class="fw-bold mb-4" style="color: rgb(255,255,255);">Upgradeable Casino</h1><button class="btn btn-primary fs-5 me-2 py-2 px-4" type="button" onclick="deploy_2()">Deploy</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div  class="col-md-6" style="text-align: right;margin: 5px 0px 0px 0px;"><input id="address_input" type="text" minlength="42" maxlength="42" pattern="^0x[a-fA-F0-9]{40}$" style="width: 370.8px;" required="" placeholder="0x0000000000000000000000000000000000000000"></div>
+                <div class="col-md-6"><button class="btn btn-primary" type="button" onclick="verify_2()">Verify</button></div>
             </div>
         </div>
         <h1 id="challenge2_status" class="fs-5 text-secondary" style="text-align: center;color: rgb(255,255,255);margin: -8px;">⬣ Undeployed<br></h1>
@@ -135,8 +140,22 @@
 
     function verify_2()
     {
+        let user_address = document.getElementById("address_input").value;
+        console.log(user_address)
+        const regex = /^0x[a-fA-F0-9]{40}$/g;
+        let address_array = regex.exec(user_address);
+        if (address_array == null)
+        {
+            to_remove = feedback.classList[feedback.classList.length - 1]
+            feedback.classList.remove(to_remove)
+            feedback.classList.add("text-danger")
+            feedback.textContent = "Address not matching an ETH Address !"
+            return
+        }
+        address_verification = address_array[0]
+        ConcatenateAddress = address_verification + proxy_address
         console.log('Verifying contract');
-        socket.emit('verify', {data: "challenge2", address: challenge_address});
+        socket.emit('verify', {data: "challenge2", address: ConcatenateAddress });
     }
 
 
