@@ -8,7 +8,7 @@ import base64
 
 
 HOST = os.environ['HOST']
-FLAG = 'DVC{C5rF4r34M4Z1N6_75512fef01c266da9d4911d418a0d3e2}'
+FLAG = 'dvCTF{C5rF4r34M4Z1N6_75512fef01c266da9d4911d418a0d3e2}'
 APP_NAME = 'CyberTime'
 ADMINS = {}  # {username: <boolean>}
 
