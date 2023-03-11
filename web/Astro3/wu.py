@@ -1,6 +1,6 @@
 import requests
 
-CHALL_URL = 'http://localhost:8087/color'
+CHALL_URL = 'http://<url>/color'
 
 with open('wu.js', 'r') as file:
     payload = file.read()

@@ -55,5 +55,5 @@ Here is the script that allows the attack to be carried out: `wu.js` (can be use
 
 The passphrase is exfiltrated via the environment variables : 
 ```
-green;Deno.inspect(Deno.env.get('passphrase'));
+green;Deno.inspect(Deno.env.get('log'));
 ```

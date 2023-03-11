@@ -16,7 +16,7 @@ import '../styles/global.css';
     <Header />
     <p>
         <label for="word1">Admin's passphrase</label><br>
-        <input id="word1"><br><input id="word2"><br><input id="word3"><br><input id="word4"><br><input id="word5"><br><input id="word6"><br><input id="word7"><br><input id="word8"><br><input id="word9"><br><input id="word10"><br><input id="word11"><br><input id="word12"><br>
+        <input id="word1"><br><input id="word2"><br><input id="word3"><br><input id="word4"><br><input id="word5"><br><input id="word6"><br><input id="word7"><br><input id="word8"><br>
         <button id="button">OK</button>
         <script>
             document.getElementById("button").onclick = function(){
@@ -24,7 +24,7 @@ import '../styles/global.css';
               xhr.open("POST", "/api");
               xhr.setRequestHeader("Content-Type", "application/json");
               let passphrase = [];
-              for (let i = 1; i <= 12; i++) {
+              for (let i = 1; i <= 8; i++) {
                 passphrase.push(document.getElementById('word' + i.toString()).value);
               }
               xhr.send(JSON.stringify({"passphrase": passphrase}));
