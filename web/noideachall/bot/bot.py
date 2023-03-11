@@ -19,11 +19,15 @@ chrome_prefs["profile.default_content_settings"] = {"images": 2}
 driver = webdriver.Chrome(options=opts)
 driver.get(URL)
 time.sleep(5)
+counter = 0
 
 while True:
     try:
         driver.add_cookie({'name': 'admin', 'value': BOT_COOKIE,})
         driver.get(URL)
+        print(counter)
+        driver.set_page_load_timeout(10)
     except Exception as e:
         print('Error checking page :', e)
+    counter += 1
     time.sleep(1)
