@@ -1,4 +1,4 @@
-**Category:** Forensic - **Difficulty:** Easy
+**Category:** Forensic - **Difficulty:** Intermediate
 
 **Description:**
 
@@ -13,9 +13,9 @@ Could you help me?
 
 2. Therefore the files of the firmware can be attempted to be extracted with binwalk : ```binwalk -e strange_dump``` or scanned for signatures ```binwalk -B strange_dump```
 
-3. The firmware's *squashFS* is missing in the list of found signatures.  We o to the emplacement of the first Zlib compressed data at *0x3E0061* on hexedit.
+3. The firmware's *squashFS* is missing in the list of found signatures.  We go to the emplacement of the first Zlib compressed data at *0x3E0061* on hexedit.
 
-4. We can see that the magic number has been replaced with the word *hide* at *0x3E0000* we therefore edit with little endian magic number **68 73 71 73**
+4. We can see that the magic number has been replaced with the word **hide** at *0x3E0000* we therefore edit with little endian magic number **68 73 71 73**. (https://sourceforge.net/p/sevenzip/discussion/45797/thread/017ed53c/)
 
 5. We can then extract files with ```binwalk -e strange_dump``` . Go to *squashfs-root* and ```md5sum davinci```
 
