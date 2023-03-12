@@ -54,7 +54,7 @@ def report(request):
                 'p': python
             }
             query_string = urlencode(params)
-            URLS_QUEUE.append('http://host/admin?' + query_string)
+            URLS_QUEUE.append('http://host/0d98dd7fa52c1cac27b7605b848c6756?' + query_string)
             messages.add_message(request, messages.SUCCESS, 'Message successfully delivered')
         else:
             messages.add_message(request, messages.ERROR, 'Admins have already received a lot of messages, try again in a few minutes, sorry')
