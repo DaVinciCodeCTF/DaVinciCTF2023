@@ -15,7 +15,7 @@ Could you help me?
 
 3. The firmware's *squashFS* is missing in the list of found signatures.  We go to the emplacement of the first Zlib compressed data at *0x3E0061* on hexedit.
 
-4. We can see that the magic number has been replaced with the word **hide** at *0x3E0000* we therefore edit with little endian magic number **68 73 71 73**. (https://sourceforge.net/p/squashfs/patches/20/ and to understand magic numbers https://dr-emann.github.io/squashfs/)
+4. We can see that the magic number has been replaced with the word **hide** at *0x3E0000* we therefore edit it with little endian magic number **68 73 71 73**. (https://sourceforge.net/p/squashfs/patches/20/ and to understand magic numbers https://dr-emann.github.io/squashfs/)
 
 5. We can then extract files with ```binwalk -e strange_dump``` . Go to *squashfs-root* and ```md5sum davinci```
 
