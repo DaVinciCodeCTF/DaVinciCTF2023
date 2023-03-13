@@ -59,7 +59,7 @@ Since PUK doesn't support arrow keys:
 
 We can check in our capture that: ``1b`` and ``06``  ( ``right_alt`` + ``y`` and ``right_alt`` + ``x``) are separed from a ``14`` (``b``) with a ``50``:
 
-![arrows](C:\Users\Joytide\Documents\DVC\DaVinciCTF2023\forensics\Weird keylogger\arrows.png)
+![arrows](arrows.png)
 
 Which we can check is mapped *for some keyboard* to the left arrow key ([source](https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2)).
 
